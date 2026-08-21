@@ -742,7 +742,7 @@
   .gallery-grid {
     display: grid;
     grid-template-columns: 1.6fr 1fr 1fr;
-    grid-template-rows: 280px 240px;
+    grid-template-rows: 280px 240px 240px;
     gap: 8px;
     margin-top: 40px;
     max-width: 1100px;
@@ -789,7 +789,7 @@
   @media (max-width: 768px) {
     .gallery-grid {
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: repeat(4, 180px);
+      grid-template-rows: repeat(5, 180px);
     }
     .gallery-item:first-child,
     .gallery-item:nth-child(4) {
@@ -1147,7 +1147,7 @@
     /* ── Galería → 1 columna ── */
     .gallery-grid {
       grid-template-columns: 1fr;
-      grid-template-rows: repeat(6, 220px);
+      grid-template-rows: repeat(8, 220px);
     }
     .gallery-item:first-child,
     .gallery-item:nth-child(4) { grid-column: 1; }
@@ -1178,7 +1178,7 @@
     .hero h1 { font-size: 1.9rem; }
     .section-title { font-size: 1.5rem; }
     .services-grid { gap: 1px; }
-    .gallery-grid { grid-template-rows: repeat(6, 180px); }
+    .gallery-grid { grid-template-rows: repeat(8, 180px); }
   }
 </style>
 
@@ -1324,7 +1324,7 @@
 <main>
 <section class="hero" aria-label="Servicio técnico de aire acondicionado en Caseros">
   <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
-    <source src="aire_limpieza_unido.mp4" type="video/mp4">
+    <source src="Tarea-109982796-1-1.mp4" type="video/mp4">
   </video>
   <div class="hero-video-overlay" aria-hidden="true"></div>
 
@@ -1494,6 +1494,22 @@
            loading="lazy"
            onerror="this.closest('.gallery-item').style.background='#1e2d40'">
       <p class="gallery-caption">Bomba de vacío Wipcool — vaciado del circuito antes de cargar gas</p>
+    </div>
+
+    <!-- Fila 3 — resultado final -->
+    <div class="gallery-item">
+      <img src="IMG-20260821-WA0180.jpeg"
+           alt="Evaporadora de aire acondicionado split terminada y funcionando después del service — García Climatización Caseros"
+           loading="lazy"
+           onerror="this.closest('.gallery-item').style.background='#1e2d40'">
+      <p class="gallery-caption">Resultado final — equipo andando, prolijo y sin marcas del trabajo</p>
+    </div>
+    <div class="gallery-item">
+      <img src="IMG-20260821-WA0184.jpeg"
+           alt="Filtros y carcasa de evaporadora abiertos mostrando el interior limpio tras la limpieza profunda — García Climatización"
+           loading="lazy"
+           onerror="this.closest('.gallery-item').style.background='#1e2d40'">
+      <p class="gallery-caption">Interior de la evaporadora — filtros e intercambiador ya limpios</p>
     </div>
 
   </div>
