@@ -742,7 +742,7 @@
   .gallery-grid {
     display: grid;
     grid-template-columns: 1.6fr 1fr 1fr;
-    grid-template-rows: 280px 240px 240px;
+    grid-template-rows: 280px 240px 240px 240px 240px;
     gap: 8px;
     margin-top: 40px;
     max-width: 1100px;
@@ -756,7 +756,8 @@
     background: var(--steel);
   }
 
-  .gallery-item img {
+  .gallery-item img,
+  .gallery-item video {
     width: 100%; height: 100%;
     object-fit: cover;
     filter: saturate(.7) brightness(.85);
@@ -764,7 +765,8 @@
     display: block;
   }
 
-  .gallery-item:hover img {
+  .gallery-item:hover img,
+  .gallery-item:hover video {
     transform: scale(1.05);
     filter: saturate(.9) brightness(.95);
   }
@@ -789,7 +791,7 @@
   @media (max-width: 768px) {
     .gallery-grid {
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: repeat(5, 180px);
+      grid-template-rows: repeat(8, 180px);
     }
     .gallery-item:first-child,
     .gallery-item:nth-child(4) {
@@ -1147,7 +1149,7 @@
     /* ── Galería → 1 columna ── */
     .gallery-grid {
       grid-template-columns: 1fr;
-      grid-template-rows: repeat(8, 220px);
+      grid-template-rows: repeat(14, 220px);
     }
     .gallery-item:first-child,
     .gallery-item:nth-child(4) { grid-column: 1; }
@@ -1178,7 +1180,7 @@
     .hero h1 { font-size: 1.9rem; }
     .section-title { font-size: 1.5rem; }
     .services-grid { gap: 1px; }
-    .gallery-grid { grid-template-rows: repeat(8, 180px); }
+    .gallery-grid { grid-template-rows: repeat(14, 180px); }
   }
 </style>
 
@@ -1510,6 +1512,50 @@
            loading="lazy"
            onerror="this.closest('.gallery-item').style.background='#1e2d40'">
       <p class="gallery-caption">Interior de la evaporadora — filtros e intercambiador ya limpios</p>
+    </div>
+
+    <!-- Fila 4 — instrumental de gas y taller -->
+    <div class="gallery-item">
+      <img src="IMG_20260726_192931_844.jpg"
+           alt="Tubos de oxígeno y acetileno con manómetros para soldadura y reparación de circuitos de refrigeración — García Climatización"
+           loading="lazy"
+           onerror="this.closest('.gallery-item').style.background='#1e2d40'">
+      <p class="gallery-caption">Equipo de oxicorte y soldadura — instrumental profesional</p>
+    </div>
+    <div class="gallery-item">
+      <img src="IMG_20260724_195643_134.jpg"
+           alt="Abocardado de cañería de cobre con llave de doble boca para conexión de circuito refrigerante — García Climatización"
+           loading="lazy"
+           onerror="this.closest('.gallery-item').style.background='#1e2d40'">
+      <p class="gallery-caption">Ajuste de conexión flare — cañería de cobre bien sellada</p>
+    </div>
+    <div class="gallery-item">
+      <img src="IMG-20260726-WA0048.jpeg"
+           alt="Estación de recuperación de gas refrigerante con bomba de vacío y unidad condensadora en banco de pruebas — García Climatización"
+           loading="lazy"
+           onerror="this.closest('.gallery-item').style.background='#1e2d40'">
+      <p class="gallery-caption">Banco de pruebas — recuperación de gas y diagnóstico de la unidad condensadora</p>
+    </div>
+
+    <!-- Fila 5 — evaporadora abierta + video del procedimiento -->
+    <div class="gallery-item">
+      <img src="IMG_20260821_140435_525.jpg"
+           alt="Evaporadora de aire acondicionado montada en pared antes de la limpieza profunda — García Climatización Caseros"
+           loading="lazy"
+           onerror="this.closest('.gallery-item').style.background='#1e2d40'">
+      <p class="gallery-caption">Evaporadora en la pared — relevamiento antes de intervenir</p>
+    </div>
+    <div class="gallery-item">
+      <img src="IMG-20260821-WA0165.jpeg"
+           alt="Evaporadora sin tapa mostrando el serpentín y la placa electrónica al descubierto — servicio técnico García Climatización"
+           loading="lazy"
+           onerror="this.closest('.gallery-item').style.background='#1e2d40'">
+      <p class="gallery-caption">Serpentín y placa al descubierto — acceso completo para el service</p>
+    </div>
+    <div class="gallery-item">
+      <video src="VID-20260821-WA0158.mp4" muted loop playsinline controls
+             onerror="this.closest('.gallery-item').style.background='#1e2d40'"></video>
+      <p class="gallery-caption">El procedimiento en acción</p>
     </div>
 
   </div>
