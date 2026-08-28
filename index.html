@@ -280,10 +280,12 @@
   }
 
   .logo {
+    display: flex; align-items: center; gap: 10px;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800; font-size: 1.25rem; letter-spacing: .04em;
     color: var(--white);
   }
+  .logo img { height: 42px; width: auto; display: block; }
   .logo span { color: var(--cold); }
 
   .header-cta {
@@ -414,39 +416,9 @@
     color: var(--cold); font-weight: 700;
   }
 
-  .btn-calc-hero {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: transparent;
-    color: var(--cold);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700; font-size: 1.1rem; letter-spacing: .06em;
-    text-decoration: none;
-    padding: 15px 30px; border-radius: 4px;
-    border: 1.5px solid rgba(79,195,232,.5);
-    box-shadow: 0 0 20px rgba(79,195,232,.08), inset 0 0 20px rgba(79,195,232,.04);
-    transition: background .25s, border-color .25s, box-shadow .25s, transform .15s, color .2s;
-    position: relative; overflow: hidden;
-  }
-  .btn-calc-hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(79,195,232,.12) 0%, rgba(45,125,210,.08) 100%);
-    opacity: 0;
-    transition: opacity .25s;
-  }
-  .btn-calc-hero:hover {
-    border-color: var(--cold);
-    color: #fff;
-    box-shadow: 0 0 32px rgba(79,195,232,.25), inset 0 0 24px rgba(79,195,232,.08);
-    transform: translateY(-2px);
-  }
-  .btn-calc-hero:hover::before { opacity: 1; }
-  .btn-calc-hero:active { transform: translateY(0); }
-  .btn-calc-hero span { position: relative; z-index: 1; }
-
   @media (max-width: 768px) {
     .hero-actions { flex-direction: column; align-items: flex-start; gap: 14px; }
-    .btn-primary, .btn-calc-hero { width: 100%; justify-content: center; }
+    .btn-primary { width: 100%; justify-content: center; }
   }
 
   .strip {
@@ -1069,10 +1041,12 @@
   }
 
   .footer-logo {
+    display: flex; align-items: center;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800; font-size: 1.1rem;
     color: var(--white);
   }
+  .footer-logo img { height: 48px; width: auto; display: block; }
   .footer-logo span { color: var(--cold); }
 
   .footer-info {
@@ -1114,7 +1088,7 @@
     .hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
     .hero-sub { font-size: 1rem; }
     .hero-actions { flex-direction: column; align-items: stretch; gap: 12px; }
-    .btn-primary, .btn-calc-hero { width: 100%; justify-content: center; }
+    .btn-primary { width: 100%; justify-content: center; }
 
     section { padding: 56px 20px; }
 
@@ -1184,124 +1158,6 @@
   }
 </style>
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
-
-<style>
-    :root {
-      --bg:#0a0c10; --surface:#111318; --card:#161921; --border:#1f2330;
-      --accent:#00e5c3; --accent2:#0066ff;
-      --elec:#f5c842; --elec2:#ff8c00;
-      --ohm:#b06cff; --ohm2:#ff4fa3;
-      --presup:#ff4f69; --presup2:#b91c1c;
-      --warn:#ff6b35; --text:#e8eaf0; --muted:#9ba3be;
-      --glow:rgba(0,229,195,.18); --glow-e:rgba(245,200,66,.18);
-      --glow-o:rgba(176,108,255,.2); --glow-p:rgba(255,79,105,.2);
-    }
-    .tc-wrap{font-family:'Syne',sans-serif;color:var(--text);}
-    .tc-wrap .mesh{display:none;}
-    .mono{font-family:'DM Mono',monospace;}
-    .tc-wrap .tab-bar{display:grid;grid-template-columns:repeat(4,1fr);background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:5px;gap:4px;margin-bottom:1.25rem;}
-    .tc-wrap .tab-btn{display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.6rem .2rem;border-radius:10px;border:none;background:transparent;color:var(--muted);font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.02em;cursor:pointer;transition:background .25s,color .25s,box-shadow .25s;white-space:nowrap;line-height:1.2;}
-    .tc-wrap .tab-btn .tab-icon{font-size:1rem;flex-shrink:0;}
-    .tc-wrap .tab-btn.active-frigo{background:rgba(0,229,195,.12);color:var(--accent);box-shadow:0 0 0 1.5px rgba(0,229,195,.3) inset;}
-    .tc-wrap .tab-btn.active-elec{background:rgba(245,200,66,.12);color:var(--elec);box-shadow:0 0 0 1.5px rgba(245,200,66,.35) inset;}
-    .tc-wrap .tab-btn.active-ohm{background:rgba(176,108,255,.14);color:var(--ohm);box-shadow:0 0 0 1.5px rgba(176,108,255,.35) inset;}
-    .tc-wrap .tab-btn.active-presup{background:rgba(255,79,105,.14);color:var(--presup);box-shadow:0 0 0 1.5px rgba(255,79,105,.35) inset;}
-    .tc-wrap .tab-panel{display:none;}
-    .tc-wrap .tab-panel.active{display:block;animation:panelIn .35s cubic-bezier(.4,0,.2,1) both;}
-    @keyframes panelIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-    .tc-wrap input[type=range]{-webkit-appearance:none;width:100%;height:4px;background:var(--border);border-radius:2px;outline:none;}
-    .tc-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);cursor:pointer;box-shadow:0 0 10px var(--glow);transition:transform .15s;}
-    .tc-wrap input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.25);}
-    .tc-wrap .chk-wrap{display:flex;align-items:center;gap:.75rem;cursor:pointer;user-select:none;}
-    .tc-wrap .chk-wrap input[type=checkbox]{display:none;}
-    .tc-wrap .chk-box{width:22px;height:22px;border:2px solid var(--border);border-radius:6px;background:var(--surface);display:grid;place-items:center;transition:background .2s,border-color .2s,box-shadow .2s;flex-shrink:0;}
-    .tc-wrap .chk-wrap input:checked~.chk-box{background:var(--accent);border-color:var(--accent);box-shadow:0 0 12px var(--glow);}
-    .tc-wrap .chk-tick{width:10px;height:10px;opacity:0;transform:scale(0);transition:all .2s;}
-    .tc-wrap .chk-wrap input:checked~.chk-box .chk-tick{opacity:1;transform:scale(1);}
-    .tc-wrap .field input[type=number],.tc-wrap .field input[type=text],.tc-wrap .field select{width:100%;background:var(--surface);border:1.5px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:1.05rem;padding:.7rem 1rem;border-radius:10px;outline:none;transition:border-color .2s,box-shadow .2s;appearance:none;-webkit-appearance:none;}
-    .tc-wrap .field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a607a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;cursor:pointer;}
-    .tc-wrap .field input:focus,.tc-wrap .field select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--glow);}
-    .tc-wrap .field-elec input:focus,.tc-wrap .field-elec select:focus{border-color:var(--elec);box-shadow:0 0 0 3px var(--glow-e);}
-    .tc-wrap .field-ohm input:focus,.tc-wrap .field-ohm select:focus{border-color:var(--ohm);box-shadow:0 0 0 3px var(--glow-o);}
-    .tc-wrap .field-presup input:focus,.tc-wrap .field-presup select:focus{border-color:var(--presup);box-shadow:0 0 0 3px var(--glow-p);}
-    .tc-wrap input[type=number]::-webkit-inner-spin-button{opacity:.4;}
-    .tc-wrap .btn-calc{width:100%;padding:1rem;border-radius:12px;border:none;cursor:pointer;font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:.04em;color:#000;position:relative;overflow:hidden;transition:transform .15s,box-shadow .2s;}
-    .tc-wrap .btn-calc::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.12);transform:translateX(-100%) skewX(-15deg);transition:transform .4s;}
-    .tc-wrap .btn-calc:hover::before{transform:translateX(110%) skewX(-15deg);}
-    .tc-wrap .btn-calc:hover{transform:translateY(-2px);}
-    .tc-wrap .btn-calc:active{transform:translateY(0);}
-    .tc-wrap .btn-frigo{background:linear-gradient(135deg,var(--accent),var(--accent2));}
-    .tc-wrap .btn-frigo:hover{box-shadow:0 8px 30px rgba(0,229,195,.3);}
-    .tc-wrap .btn-elec{background:linear-gradient(135deg,var(--elec),var(--elec2));}
-    .tc-wrap .btn-elec:hover{box-shadow:0 8px 30px rgba(245,200,66,.3);}
-    .tc-wrap .btn-ohm{background:linear-gradient(135deg,var(--ohm),var(--ohm2));}
-    .tc-wrap .btn-ohm:hover{box-shadow:0 8px 30px rgba(176,108,255,.3);}
-    .tc-wrap .btn-presup{background:linear-gradient(135deg,var(--presup),var(--presup2));color:#fff;}
-    .tc-wrap .btn-presup:hover{box-shadow:0 8px 30px rgba(255,79,105,.3);}
-    .tc-wrap .result-card{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:1.5rem;position:relative;overflow:hidden;}
-    .tc-wrap .result-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
-    .tc-wrap .result-card.rc-elec::before{background:linear-gradient(90deg,var(--elec),var(--elec2));}
-    .tc-wrap .result-card.rc-ohm::before{background:linear-gradient(90deg,var(--ohm),var(--ohm2));}
-    .tc-wrap .result-card.rc-presup::before{background:linear-gradient(90deg,var(--presup),var(--presup2));}
-    .tc-wrap .result-card.rc-warn::before{background:linear-gradient(90deg,var(--warn),#ffb347);}
-    .tc-wrap .result-card.rc-zona::before{background:linear-gradient(90deg,#f59e0b,#ef4444);}
-    .tc-wrap .big-num{font-size:clamp(2.2rem,8vw,3.4rem);font-weight:800;line-height:1;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .tc-wrap .big-num-e{font-size:clamp(2.2rem,8vw,3.4rem);font-weight:800;line-height:1;background:linear-gradient(135deg,var(--elec),var(--elec2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .tc-wrap .big-num-o{font-size:clamp(2rem,7vw,3rem);font-weight:800;line-height:1;background:linear-gradient(135deg,var(--ohm),var(--ohm2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .tc-wrap .big-num-p{font-size:clamp(2.2rem,8vw,3.4rem);font-weight:800;line-height:1;background:linear-gradient(135deg,var(--presup),var(--presup2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .tc-wrap .tag{display:inline-block;padding:.25rem .7rem;border-radius:999px;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;}
-    .tc-wrap .tag-green{background:rgba(0,229,195,.12);color:var(--accent);}
-    .tc-wrap .tag-blue{background:rgba(0,102,255,.15);color:#4da6ff;}
-    .tc-wrap .tag-warn{background:rgba(255,107,53,.15);color:var(--warn);}
-    .tc-wrap .tag-yellow{background:rgba(245,200,66,.12);color:var(--elec);}
-    .tc-wrap .tag-purple{background:rgba(176,108,255,.14);color:var(--ohm);}
-    .tc-wrap .tag-pink{background:rgba(255,79,105,.12);color:var(--presup);}
-    .tc-wrap .tag-orange{background:rgba(245,158,11,.15);color:#f59e0b;}
-    .tc-wrap .pipe-row{display:flex;align-items:center;gap:.75rem;padding:.65rem 0;border-bottom:1px solid var(--border);}
-    .tc-wrap .pipe-row:last-child{border-bottom:none;}
-    .tc-wrap .pipe-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
-    .tc-wrap .divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:1.25rem 0;}
-    .tc-wrap .ohm-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-    .tc-wrap .ohm-metric{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:1.1rem;text-align:center;position:relative;overflow:hidden;transition:border-color .3s;}
-    .tc-wrap .ohm-metric::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;}
-    .tc-wrap .ohm-metric.m-i::after{background:linear-gradient(90deg,var(--ohm),var(--ohm2));}
-    .tc-wrap .ohm-metric.m-p::after{background:linear-gradient(90deg,var(--elec),var(--elec2));}
-    .tc-wrap .formula-box{background:var(--surface);border:1px dashed var(--border);border-radius:10px;padding:.75rem 1rem;font-family:'DM Mono',monospace;font-size:.82rem;color:var(--muted);letter-spacing:.04em;}
-    .tc-wrap .appliance-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
-    @media(min-width:480px){.tc-wrap .appliance-grid{grid-template-columns:1fr 1fr 1fr;}}
-    .tc-wrap .appliance-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:.75rem .6rem;display:flex;flex-direction:column;align-items:center;gap:.35rem;position:relative;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
-    .tc-wrap .appliance-card:hover{border-color:rgba(0,229,195,.3);}
-    .tc-wrap .appliance-icon{font-size:1.5rem;line-height:1;}
-    .tc-wrap .appliance-name{font-size:.62rem;font-weight:700;color:var(--muted);text-align:center;letter-spacing:.06em;text-transform:uppercase;}
-    .tc-wrap .appliance-watts{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--muted);margin-top:-.1rem;}
-    .tc-wrap .counter-row{display:flex;align-items:center;gap:.4rem;margin-top:.2rem;}
-    .tc-wrap .counter-btn{width:22px;height:22px;border-radius:6px;border:1.5px solid var(--border);background:transparent;color:var(--text);cursor:pointer;font-size:.85rem;display:grid;place-items:center;transition:background .15s,border-color .15s;font-weight:700;flex-shrink:0;}
-    .tc-wrap .counter-btn:hover{background:rgba(0,229,195,.12);border-color:rgba(0,229,195,.4);}
-    .tc-wrap .counter-val{font-family:'DM Mono',monospace;font-size:.95rem;font-weight:700;color:var(--accent);min-width:18px;text-align:center;transition:transform .15s;}
-    .tc-wrap .counter-val.bump{animation:cntBump .2s ease;}
-    @keyframes cntBump{0%{transform:scale(1)}50%{transform:scale(1.4)}100%{transform:scale(1)}}
-    .tc-wrap .app-total-bar{display:flex;align-items:center;justify-content:space-between;background:rgba(0,229,195,.06);border:1px solid rgba(0,229,195,.15);border-radius:9px;padding:.6rem .9rem;margin-top:.75rem;}
-    .tc-wrap .zona-selector{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;margin-bottom:1rem;}
-    @media(min-width:420px){.tc-wrap .zona-selector{grid-template-columns:repeat(3,1fr);}}
-    .tc-wrap .zona-btn{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:.55rem .4rem;font-family:'Syne',sans-serif;font-size:.68rem;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s;text-align:center;letter-spacing:.02em;}
-    .tc-wrap .zona-btn:hover{border-color:rgba(245,158,11,.4);color:#f59e0b;background:rgba(245,158,11,.06);}
-    .tc-wrap .zona-btn.zona-active{background:rgba(245,158,11,.12);color:#f59e0b;border-color:rgba(245,158,11,.5);box-shadow:0 0 0 1px rgba(245,158,11,.2) inset;}
-    .tc-wrap .zona-info-card{background:var(--surface);border:1.5px solid rgba(245,158,11,.2);border-radius:12px;padding:1rem;overflow:hidden;position:relative;}
-    .tc-wrap .zona-info-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#f59e0b,#ef4444);}
-    .tc-wrap .zona-temp-bar{display:flex;gap:.4rem;align-items:stretch;height:56px;border-radius:8px;overflow:hidden;margin:.6rem 0;}
-    .tc-wrap .zona-month{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;border-radius:3px;padding-bottom:3px;font-family:'DM Mono',monospace;font-size:.5rem;font-weight:700;color:rgba(255,255,255,.7);transition:flex .4s;}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-    .tc-wrap .fade-up{animation:fadeUp .5s ease both;}
-    .tc-wrap .delay-1{animation-delay:.08s;}.tc-wrap .delay-2{animation-delay:.16s;}.tc-wrap .delay-3{animation-delay:.24s;}
-    @keyframes popIn{0%{opacity:0;transform:scale(.92) translateY(16px)}60%{transform:scale(1.02)}100%{opacity:1;transform:scale(1) translateY(0)}}
-    .tc-wrap .pop-in{animation:popIn .45s cubic-bezier(.34,1.56,.64,1) both;}
-    .tc-wrap .hidden{display:none!important;}
-    .tc-wrap .item-row input{width:100%;background:var(--surface);border:1.5px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:.9rem;border-radius:8px;outline:none;transition:border-color .2s;}
-    .tc-wrap .item-row input:focus{border-color:var(--presup);box-shadow:0 0 0 3px var(--glow-p);}
-</style>
 </head>
 <body>
 
@@ -1309,7 +1165,9 @@
      HEADER
      ══════════════════════════════════════════ -->
 <header role="banner">
-  <a href="/" class="logo" aria-label="García Climatización — inicio">García<span>·</span>Climatización</a>
+  <a href="/" class="logo" aria-label="AG García Climatización — inicio">
+    <img src="logo-ag-garcia.png" alt="AG García Climatización — logo">
+  </a>
   <a href="https://wa.me/541125426499?text=Hola%2C%20necesito%20un%20servicio%20t%C3%A9cnico%20para%20mi%20aire%20acondicionado%20split"
      class="header-cta"
      target="_blank"
@@ -1347,9 +1205,6 @@
        aria-label="Pedir turno de servicio técnico por WhatsApp">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.524 5.855L.057 23.215a.75.75 0 0 0 .916.932l5.565-1.457A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.68-.512-5.21-1.407l-.374-.22-3.867 1.013 1.035-3.76-.242-.386A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
       Pedí tu turno por WhatsApp
-    </a>
-    <a href="#calculadora" class="btn-calc-hero" aria-label="Ir a la calculadora de frigorías">
-      <span>🧮 Calculadora de frigorías gratis</span>
     </a>
     <span class="trust-note">Respondemos el mismo día</span>
   </div>
@@ -1772,237 +1627,6 @@
 <!-- ══════════════════════════════════════════
      CALCULADORA
      ══════════════════════════════════════════ -->
-<section id="calculadora" aria-labelledby="calc-title" style="background:#0d1117; border-top:1px solid rgba(200,232,245,.08); padding:80px 40px; position:relative; z-index:1;">
-  <div style="max-width:640px; margin:0 auto;">
-    <h2 id="calc-title" class="section-title" style="margin-bottom:8px;">Calculadora de frigorías para aire acondicionado</h2>
-    <p style="color:var(--muted);font-size:.9rem;margin-bottom:32px;line-height:1.6;">Calculá la potencia exacta que necesitás para enfriar tu ambiente en Caseros o zona oeste del GBA, según zona climática argentina.</p>
-
-    <div class="tc-wrap">
-
-      <div class="w-full max-w-xl mb-8 fade-up">
-        <div class="flex items-center gap-3 mb-3">
-          <div style="background:linear-gradient(135deg,#00e5c3,#0066ff);width:42px;height:42px;border-radius:11px;display:grid;place-items:center;flex-shrink:0;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-          </div>
-          <div>
-            <span class="mono text-xs" style="color:var(--accent);letter-spacing:.12em;">PORTAL TÉCNICO · v3.0</span>
-            <h3 style="font-size:1.5rem;font-weight:800;line-height:1.1;font-family:'Syne',sans-serif;">TechCalc — Herramientas HVAC</h3>
-          </div>
-        </div>
-        <p style="color:var(--muted);font-size:.88rem;line-height:1.6;">Calculadora técnica de refrigeración, electricidad, electrónica y presupuestos para profesionales HVAC y usuarios finales.</p>
-      </div>
-
-      <main class="w-full max-w-xl" aria-label="Calculadoras técnicas HVAC">
-
-        <div class="tab-bar fade-up delay-1" role="tablist" aria-label="Herramientas de cálculo">
-          <button class="tab-btn active-frigo" id="tab-frigo" role="tab" aria-selected="true" aria-controls="panel-frigo" onclick="switchTab('frigo')"><span class="tab-icon" aria-hidden="true">❄️</span><span>Frigorías</span></button>
-          <button class="tab-btn" id="tab-elec" role="tab" aria-selected="false" aria-controls="panel-elec" onclick="switchTab('elec')"><span class="tab-icon" aria-hidden="true">⚡</span><span>Electricidad</span></button>
-          <button class="tab-btn" id="tab-ohm" role="tab" aria-selected="false" aria-controls="panel-ohm" onclick="switchTab('ohm')"><span class="tab-icon" aria-hidden="true">🔬</span><span>Electrónica</span></button>
-          <button class="tab-btn" id="tab-presup" role="tab" aria-selected="false" aria-controls="panel-presup" onclick="switchTab('presup')"><span class="tab-icon" aria-hidden="true">📝</span><span>Presupuestos</span></button>
-        </div>
-
-        <div id="panel-frigo" class="tab-panel active" role="tabpanel" aria-labelledby="tab-frigo">
-          <section class="result-card mb-4">
-            <p class="tag tag-green mb-4">01 — Dimensiones del ambiente</p>
-            <div class="grid grid-cols-3 gap-3">
-              <div class="field"><label class="block mono text-xs mb-1.5" style="color:var(--muted);" for="largo">Largo (m)</label><input type="number" id="largo" min="0.5" max="99" step="0.1" value="5" oninput="updateVol()"/></div>
-              <div class="field"><label class="block mono text-xs mb-1.5" style="color:var(--muted);" for="ancho">Ancho (m)</label><input type="number" id="ancho" min="0.5" max="99" step="0.1" value="4" oninput="updateVol()"/></div>
-              <div class="field"><label class="block mono text-xs mb-1.5" style="color:var(--muted);" for="alto">Alto (m)</label><input type="number" id="alto" min="1.5" max="20" step="0.1" value="2.6" oninput="updateVol()"/></div>
-            </div>
-            <div class="mt-3 flex items-center gap-2">
-              <span class="mono text-xs" style="color:var(--muted);">Volumen estimado:</span>
-              <span id="vol-preview" class="mono text-xs" style="color:var(--accent);">52.0 m³</span>
-            </div>
-          </section>
-          <section class="result-card mb-4">
-            <p class="tag tag-blue mb-4">02 — Modificadores de carga térmica</p>
-            <label class="chk-wrap mb-5">
-              <input type="checkbox" id="sol" />
-              <span class="chk-box"><svg class="chk-tick" viewBox="0 0 10 10" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>
-              <div><span class="block" style="font-size:.95rem;font-weight:600;">Recibe sol directo</span><span class="mono text-xs" style="color:var(--muted);">Ventanas / muro orientado al oeste o norte · +15% carga térmica</span></div>
-            </label>
-            <div>
-              <div class="flex justify-between items-end mb-2">
-                <label class="block" style="font-size:.95rem;font-weight:600;" for="personas">Cantidad de personas</label>
-                <span id="personas-val" class="mono text-sm" style="color:var(--accent);">2</span>
-              </div>
-              <input type="range" id="personas" min="1" max="12" step="1" value="2" oninput="document.getElementById('personas-val').textContent=this.value" aria-label="Cantidad de personas en el ambiente"/>
-              <div class="relative mono text-xs mt-1" style="color:var(--muted);height:1.1rem;" aria-hidden="true">
-                <span style="position:absolute;left:9px;transform:translateX(-50%);">1</span>
-                <span style="position:absolute;left:calc(27.27% + 4.1px);transform:translateX(-50%);">4</span>
-                <span style="position:absolute;left:calc(63.64% - 2.5px);transform:translateX(-50%);">8</span>
-                <span style="position:absolute;left:calc(100% - 9px);transform:translateX(-50%);">12</span>
-              </div>
-              <p class="mono text-xs mt-2" style="color:var(--muted);">Más de 2 personas: +150 fg por persona adicional</p>
-            </div>
-          </section>
-          <section class="result-card mb-4">
-            <div class="flex items-center justify-between mb-1">
-              <p class="tag tag-orange">03 — Cargas térmicas de electrodomésticos</p>
-              <span class="mono text-xs" style="color:var(--muted);">fg adicionales: <span id="app-fg-badge" style="color:var(--accent);font-weight:700;">0</span></span>
-            </div>
-            <p class="mono text-xs mb-4 mt-1" style="color:var(--muted);">Cada aparato encendido genera calor que el equipo debe compensar. Sumá lo que hay en el ambiente.</p>
-            <div class="appliance-grid" id="appliance-grid"></div>
-            <div class="app-total-bar mt-3">
-              <div>
-                <span class="mono text-xs" style="color:var(--muted);">Calor extra por equipos</span>
-                <div class="mono" style="font-size:1.05rem;font-weight:700;color:var(--accent);" id="app-watts-total">0 W</div>
-              </div>
-              <div style="text-align:right;">
-                <span class="mono text-xs" style="color:var(--muted);">Frigorías equivalentes</span>
-                <div class="mono" style="font-size:1.05rem;font-weight:700;color:var(--accent2);" id="app-fg-total">+ 0 fg</div>
-              </div>
-            </div>
-          </section>
-          <section class="result-card rc-zona mb-4">
-            <p class="tag tag-orange mb-1">04 — Zona climática de Argentina</p>
-            <p class="mono text-xs mb-4 mt-1" style="color:var(--muted);">El clima de cada región exige distintas capacidades. Seleccioná tu zona para aplicar el factor corrector automáticamente.</p>
-            <div class="zona-selector" id="zona-selector"></div>
-            <div class="zona-info-card" id="zona-info-card">
-              <div class="flex items-start justify-between gap-3 flex-wrap">
-                <div>
-                  <p id="zona-nombre" class="mono text-xs" style="color:#f59e0b;font-weight:700;letter-spacing:.08em;">— SELECCIONÁ UNA ZONA —</p>
-                  <p id="zona-provincias" class="mt-1" style="font-size:.8rem;color:var(--muted);line-height:1.5;">Hacé clic en una región para ver información climática y el factor corrector recomendado.</p>
-                </div>
-                <div style="text-align:right;flex-shrink:0;">
-                  <p class="mono text-xs" style="color:var(--muted);">Factor corrector</p>
-                  <p id="zona-factor-display" style="font-size:1.8rem;font-weight:800;color:#f59e0b;">—</p>
-                </div>
-              </div>
-              <div id="zona-temp-bar" class="zona-temp-bar hidden"></div>
-              <div id="zona-detalle" class="hidden mt-3 space-y-1"></div>
-            </div>
-          </section>
-          <button class="btn-calc btn-frigo mb-6" onclick="calcularFrigo()">Calcular frigorías necesarias →</button>
-          <div id="resultado-frigo" class="hidden">
-            <div class="result-card pop-in mb-4">
-              <div class="flex items-start justify-between gap-4 flex-wrap">
-                <div><p class="tag tag-green mb-2">Frigorías calculadas</p><div class="big-num" id="fg-total">—</div><p class="mono text-xs mt-1" style="color:var(--muted);">frigorías / hora (fg/h)</p></div>
-                <div class="text-right"><p class="mono text-xs mb-1" style="color:var(--muted);">Potencia comercial sugerida</p><div style="font-size:2rem;font-weight:800;color:var(--accent2);" id="fg-comercial">—</div><p class="mono text-xs" style="color:var(--muted);">fg/h</p></div>
-              </div>
-              <div class="divider"></div>
-              <p class="mono text-xs mb-3" style="color:var(--muted);letter-spacing:.06em;">DESGLOSE DE CÁLCULO</p>
-              <div id="desglose" class="space-y-1.5"></div>
-            </div>
-            <div class="result-card pop-in mb-4" style="animation-delay:.1s;">
-              <p class="tag tag-blue mb-4">Especificación técnica de materiales</p>
-              <div id="equipo-info" class="mb-4"></div>
-              <div class="divider"></div>
-              <p class="mono text-xs mb-3" style="color:var(--muted);letter-spacing:.06em;">CAÑERÍAS DE COBRE RECOMENDADAS</p>
-              <div id="canerias"></div>
-              <div class="divider"></div>
-              <p class="mono text-xs mb-3" style="color:var(--muted);letter-spacing:.06em;">OTROS MATERIALES SUGERIDOS</p>
-              <div id="otros-mat"></div>
-            </div>
-            <div class="result-card pop-in rc-warn" style="animation-delay:.2s;border-color:rgba(255,107,53,.2);">
-              <p class="tag tag-warn mb-3">Nota técnica</p>
-              <p style="font-size:.83rem;color:var(--muted);line-height:1.65;">Cálculo orientativo basado en <strong>50 fg/m³</strong> para uso residencial. Los valores reales varían según aislación, orientación y zona climática. Consultá con un técnico matriculado.</p>
-            </div>
-          </div>
-        </div>
-
-        <div id="panel-elec" class="tab-panel" role="tabpanel" aria-labelledby="tab-elec">
-          <section class="result-card rc-elec mb-4">
-            <p class="tag tag-yellow mb-4">01 — Carga eléctrica</p>
-            <div class="grid grid-cols-2 gap-3">
-              <div class="field field-elec"><label class="block mono text-xs mb-1.5" style="color:var(--muted);" for="e-watts">Potencia total (W)</label><input type="number" id="e-watts" min="1" max="99999" step="1" placeholder="2200" /></div>
-              <div class="field field-elec"><label class="block mono text-xs mb-1.5" style="color:var(--muted);" for="e-voltaje">Voltaje</label><select id="e-voltaje"><option value="220">220 V — monofásico</option><option value="380">380 V — trifásico</option></select></div>
-            </div>
-            <div class="mt-4"><p class="mono text-xs mb-2" style="color:var(--muted);letter-spacing:.06em;">FÓRMULA APLICADA</p><div class="formula-box">I = P ÷ V &nbsp;·&nbsp; corriente en Amperes = Potencia (W) / Voltaje (V)</div></div>
-          </section>
-          <button class="btn-calc btn-elec mb-6" onclick="calcularElec()">Calcular protecciones eléctricas →</button>
-          <div id="resultado-elec" class="hidden">
-            <div class="result-card rc-elec pop-in mb-4">
-              <div class="flex items-start justify-between gap-4 flex-wrap">
-                <div><p class="tag tag-yellow mb-2">Corriente calculada</p><div class="big-num-e" id="e-amp">—</div><p class="mono text-xs mt-1" style="color:var(--muted);">Amperes (A)</p></div>
-                <div class="text-right"><p class="mono text-xs mb-1" style="color:var(--muted);">Llave térmica sugerida</p><div style="font-size:2rem;font-weight:800;color:var(--elec2);" id="e-termica">—</div><p class="mono text-xs" style="color:var(--muted);">Amperes</p></div>
-              </div>
-              <div class="divider"></div>
-              <p class="mono text-xs mb-3" style="color:var(--muted);letter-spacing:.06em;">DESGLOSE</p>
-              <div id="e-desglose" class="space-y-1.5"></div>
-            </div>
-            <div class="result-card rc-elec pop-in mb-4" style="animation-delay:.1s;">
-              <p class="tag tag-yellow mb-4">Sección de cable de cobre recomendada</p>
-              <div id="e-cable"></div>
-              <div class="divider"></div>
-              <p class="mono text-xs mb-3" style="color:var(--muted);letter-spacing:.06em;">OTROS ELEMENTOS SUGERIDOS</p>
-              <div id="e-extras"></div>
-            </div>
-            <div class="result-card pop-in rc-warn" style="animation-delay:.2s;border-color:rgba(255,107,53,.2);">
-              <p class="tag tag-warn mb-3">Nota reglamentaria AEA 90364</p>
-              <p style="font-size:.83rem;color:var(--muted);line-height:1.65;">Valores orientativos según reglamentación AEA 90364. Siempre verificar FP para cargas inductivas y aplicar margen de seguridad del <strong>20–25%</strong>. Instalaciones realizadas por electricista matriculado.</p>
-            </div>
-          </div>
-        </div>
-
-        <div id="panel-ohm" class="tab-panel" role="tabpanel" aria-labelledby="tab-ohm">
-          <section class="result-card rc-ohm mb-4">
-            <p class="tag tag-purple mb-4">Ley de Ohm — Calculadora de circuitos</p>
-            <div class="grid grid-cols-2 gap-3 mb-4">
-              <div class="field field-ohm"><label class="block mono text-xs mb-1.5" style="color:var(--muted);" for="o-voltaje">Voltaje — V (Volts)</label><input type="number" id="o-voltaje" min="0.001" step="any" placeholder="12" /></div>
-              <div class="field field-ohm"><label class="block mono text-xs mb-1.5" style="color:var(--muted);" for="o-resist">Resistencia — R (Ω)</label><input type="number" id="o-resist" min="0.001" step="any" placeholder="470" /></div>
-            </div>
-            <div><p class="mono text-xs mb-2" style="color:var(--muted);letter-spacing:.06em;">FÓRMULAS APLICADAS</p><div class="formula-box">I = V ÷ R &nbsp;&nbsp;·&nbsp;&nbsp; corriente (A) = voltaje / resistencia<br/>P = V × I &nbsp;&nbsp;·&nbsp;&nbsp; potencia (W) = voltaje × corriente</div></div>
-          </section>
-          <section class="result-card rc-ohm mb-4">
-            <p class="tag tag-purple mb-3">Referencia rápida — Ley de Ohm</p>
-            <div class="grid grid-cols-3 gap-2 text-center">
-              <div style="background:var(--surface);border-radius:8px;padding:.6rem;"><p class="mono text-xs" style="color:var(--muted);">V (Volts)</p><p style="font-weight:700;font-size:.95rem;color:var(--ohm);">V = I × R</p></div>
-              <div style="background:var(--surface);border-radius:8px;padding:.6rem;"><p class="mono text-xs" style="color:var(--muted);">I (Amperes)</p><p style="font-weight:700;font-size:.95rem;color:var(--ohm);">I = V ÷ R</p></div>
-              <div style="background:var(--surface);border-radius:8px;padding:.6rem;"><p class="mono text-xs" style="color:var(--muted);">P (Watts)</p><p style="font-weight:700;font-size:.95rem;color:var(--elec);">P = V × I</p></div>
-            </div>
-          </section>
-          <button class="btn-calc btn-ohm mb-6" onclick="calcularOhm()">Calcular corriente y potencia →</button>
-          <div id="resultado-ohm" class="hidden">
-            <div class="result-card rc-ohm pop-in mb-4">
-              <p class="tag tag-purple mb-4">Resultado del circuito</p>
-              <div class="ohm-grid mb-4">
-                <div class="ohm-metric m-i"><p class="mono text-xs mb-1" style="color:var(--muted);">CORRIENTE</p><div class="big-num-o" id="o-amp-res">—</div><p class="mono text-xs mt-1" style="color:var(--ohm);">Amperes (A)</p></div>
-                <div class="ohm-metric m-p"><p class="mono text-xs mb-1" style="color:var(--muted);">POTENCIA</p><div class="big-num-o" style="background:linear-gradient(135deg,var(--elec),var(--elec2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="o-watt-res">—</div><p class="mono text-xs mt-1" style="color:var(--elec);">Watts (W)</p></div>
-              </div>
-              <div class="divider"></div>
-              <p class="mono text-xs mb-3" style="color:var(--muted);letter-spacing:.06em;">VALORES COMPLETOS DEL CIRCUITO</p>
-              <div id="o-tabla" class="space-y-1.5"></div>
-            </div>
-            <div class="result-card pop-in rc-warn" style="animation-delay:.12s;border-color:rgba(255,107,53,.2);">
-              <p class="tag tag-warn mb-3">Contexto técnico</p>
-              <p style="font-size:.83rem;color:var(--muted);line-height:1.65;">La Ley de Ohm aplica a <strong>resistencias puras en DC</strong> o AC con cargas resistivas. Para circuitos con capacitores o inductores considerar impedancia (Z) y ángulo de fase.</p>
-            </div>
-          </div>
-        </div>
-
-        <div id="panel-presup" class="tab-panel" role="tabpanel" aria-labelledby="tab-presup">
-          <section class="result-card rc-presup mb-4">
-            <p class="tag tag-pink mb-4">01 — Datos del presupuesto</p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div class="field field-presup"><label class="block mono text-xs mb-1.5" style="color:var(--muted);" for="p-cliente">Nombre del Cliente</label><input type="text" id="p-cliente" placeholder="Ej: Juan Pérez" /></div>
-              <div class="field field-presup"><label class="block mono text-xs mb-1.5" style="color:var(--muted);" for="p-concepto">Proyecto / Concepto</label><input type="text" id="p-concepto" placeholder="Ej: Mantenimiento aire acondicionado 3000 fg" /></div>
-            </div>
-          </section>
-          <section class="result-card rc-presup mb-4">
-            <p class="tag tag-pink mb-4">02 — Ítems de mano de obra y materiales</p>
-            <div id="items-container" class="space-y-3 mb-4">
-              <div class="item-row grid grid-cols-12 gap-2 items-center border-b border-gray-800 pb-3">
-                <div class="col-span-6 field field-presup"><input type="text" class="item-desc font-sans text-sm" placeholder="Descripción del trabajo o material" style="padding:.5rem;" /></div>
-                <div class="col-span-2 field field-presup"><input type="number" class="item-cant text-center" placeholder="Cant" min="1" value="1" style="padding:.5rem;" oninput="recalcularPresupuesto()" /></div>
-                <div class="col-span-3 field field-presup"><input type="number" class="item-precio" placeholder="$ Precio" min="0" style="padding:.5rem;" oninput="recalcularPresupuesto()" /></div>
-                <div class="col-span-1 text-center"><button class="text-red-500 font-bold text-lg hover:text-red-400" onclick="eliminarFila(this)" aria-label="Eliminar fila">×</button></div>
-              </div>
-            </div>
-            <button class="w-full text-center text-xs font-semibold uppercase tracking-wider p-2 rounded-lg border border-dashed border-pink-500/30 text-pink-400 hover:bg-pink-500/5 transition mb-2" onclick="agregarFila()">➕ Agregar Ítem</button>
-          </section>
-          <section class="result-card rc-presup mb-4 text-center">
-            <p class="tag tag-pink mb-2">Total Presupuestado</p>
-            <div class="big-num-p" id="p-total">$ 0,00</div>
-            <p class="mono text-xs mt-1" style="color:var(--muted);">Suma total de materiales y mano de obra</p>
-          </section>
-          <button class="btn-calc btn-presup mb-6" onclick="exportarPDF()">📄 Generar Presupuesto PDF →</button>
-        </div>
-
-      </main>
-    </div>
-  </div>
-</section>
 </main>
 
 <!-- ══════════════════════════════════════════
@@ -2038,7 +1662,8 @@
      ══════════════════════════════════════════ -->
 <footer role="contentinfo">
   <div class="footer-logo" itemscope itemtype="https://schema.org/HVACBusiness">
-    <span itemprop="name">García<span>·</span>Climatización</span>
+    <img src="logo-ag-garcia.png" alt="AG García Climatización — logo">
+    <span itemprop="name" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">García Climatización</span>
   </div>
   <address class="footer-info" style="font-style: normal;">
     <span itemscope itemtype="https://schema.org/PostalAddress">
@@ -2171,314 +1796,6 @@ function sendOrderWhatsApp() {
   const encodedText = encodeURIComponent(text);
   window.open(`https://wa.me/541125426499?text=${encodedText}`, '_blank');
 }
-
-// ══════════════════════════════════════════
-//  TAB SWITCHING
-// ══════════════════════════════════════════
-const TABS=['frigo','elec','ohm','presup'];
-const TAB_CLASSES={frigo:'active-frigo',elec:'active-elec',ohm:'active-ohm',presup:'active-presup'};
-function switchTab(id){
-  TABS.forEach(t=>{
-    document.getElementById('panel-'+t).classList.remove('active');
-    document.getElementById('tab-'+t).classList.remove('active-frigo','active-elec','active-ohm','active-presup');
-    document.getElementById('tab-'+t).setAttribute('aria-selected','false');
-  });
-  document.getElementById('panel-'+id).classList.add('active');
-  document.getElementById('tab-'+id).classList.add(TAB_CLASSES[id]);
-  document.getElementById('tab-'+id).setAttribute('aria-selected','true');
-}
-
-// ══════════════════════════════════════════
-//  ELECTRODOMÉSTICOS
-// ══════════════════════════════════════════
-const APPLIANCES = [
-  {id:'tv',     icon:'📺', name:'Televisor',    watts:120, desc:'LED 50\"'},
-  {id:'pc',     icon:'🖥️', name:'PC / Monitor', watts:200, desc:'Torre + pantalla'},
-  {id:'laptop', icon:'💻', name:'Notebook',     watts:65,  desc:'Uso normal'},
-  {id:'fridge', icon:'🧊', name:'Heladera',     watts:150, desc:'No-frost estándar'},
-  {id:'micro',  icon:'📡', name:'Microondas',   watts:1200,desc:'En uso'},
-  {id:'washing',icon:'🫧', name:'Lavarropas',   watts:500, desc:'En funcionamiento'},
-  {id:'lamp',   icon:'💡', name:'Luminaria',    watts:40,  desc:'Por artefacto (x4 equiv.)'},
-  {id:'console',icon:'🎮', name:'Consola',      watts:150, desc:'PS5/Xbox'},
-  {id:'router', icon:'📶', name:'Router/Modem', watts:20,  desc:'Siempre encendido'},
-  {id:'printer',icon:'🖨️', name:'Impresora',    watts:400, desc:'En uso'},
-  {id:'fan',    icon:'🌀', name:'Ventilador',   watts:60,  desc:'Tornillo/pie'},
-  {id:'dehu',   icon:'💧', name:'Deshumid.',    watts:280, desc:'Deshumidificador'},
-];
-const appCounts = {};
-APPLIANCES.forEach(a => appCounts[a.id] = 0);
-function renderAppliances(){
-  const grid = document.getElementById('appliance-grid');
-  grid.innerHTML = APPLIANCES.map(a => `
-    <div class="appliance-card">
-      <span class="appliance-icon" aria-hidden="true">${a.icon}</span>
-      <span class="appliance-name">${a.name}</span>
-      <span class="appliance-watts">${a.watts}W · ${a.desc}</span>
-      <div class="counter-row">
-        <button class="counter-btn" onclick="changeCount('${a.id}',-1)" aria-label="Quitar ${a.name}">−</button>
-        <span class="counter-val" id="cnt-${a.id}" aria-live="polite">0</span>
-        <button class="counter-btn" onclick="changeCount('${a.id}',1)" aria-label="Agregar ${a.name}">+</button>
-      </div>
-    </div>`).join('');
-}
-function changeCount(id, delta){
-  appCounts[id] = Math.max(0, (appCounts[id]||0) + delta);
-  const el = document.getElementById('cnt-'+id);
-  el.textContent = appCounts[id];
-  el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump');
-  updateAppTotal();
-}
-function updateAppTotal(){
-  let totalW = 0;
-  APPLIANCES.forEach(a => { totalW += (appCounts[a.id]||0) * a.watts; });
-  const totalFg = Math.round(totalW * 0.86);
-  document.getElementById('app-watts-total').textContent = totalW.toLocaleString('es-AR') + ' W';
-  document.getElementById('app-fg-total').textContent = '+ ' + totalFg.toLocaleString('es-AR') + ' fg';
-  document.getElementById('app-fg-badge').textContent = totalFg.toLocaleString('es-AR');
-}
-function getAppFg(){
-  let totalW = 0;
-  APPLIANCES.forEach(a => { totalW += (appCounts[a.id]||0) * a.watts; });
-  return Math.round(totalW * 0.86);
-}
-
-// ══════════════════════════════════════════
-//  ZONAS CLIMÁTICAS
-// ══════════════════════════════════════════
-const ZONAS = [
-  {id:'nea',label:'☀️ NEA',nombre:'Nordeste Argentino',provincias:'Chaco, Formosa, Misiones, Corrientes',factor:1.25,descripcion:'Clima subtropical húmedo. Veranos extremos con temperaturas que superan los 45°C de sensación térmica. Mayor exigencia térmica del país.',tempMax:42,tempMin:14,meses:[38,37,34,28,22,17,16,19,24,30,35,38],color:'#ef4444'},
-  {id:'noa',label:'🌵 NOA',nombre:'Noroeste Argentino',provincias:'Salta, Jujuy, Tucumán, Santiago del Estero, Catamarca',factor:1.20,descripcion:'Clima subtropical seco. Veranos muy calurosos y secos. Alta irradiación solar.',tempMax:40,tempMin:8,meses:[36,35,30,24,16,10,10,13,20,28,32,36],color:'#f97316'},
-  {id:'cuyo',label:'🏔️ Cuyo',nombre:'Región de Cuyo',provincias:'Mendoza, San Juan, San Luis, La Rioja',factor:1.18,descripcion:'Clima árido continental. Veranos muy calurosos y secos.',tempMax:38,tempMin:5,meses:[33,32,27,20,12,6,6,9,16,24,30,33],color:'#eab308'},
-  {id:'litoral',label:'🌊 Litoral',nombre:'Litoral / Pampa húmeda',provincias:'Entre Ríos, Santa Fe, Buenos Aires (norte), CABA',factor:1.10,descripcion:'Clima templado húmedo. Veranos cálidos con alta humedad relativa.',tempMax:35,tempMin:5,meses:[29,28,25,19,13,9,8,10,15,21,26,28],color:'#22d3ee'},
-  {id:'bsas',label:'🏙️ Bs.As.',nombre:'Buenos Aires / GBA',provincias:'Buenos Aires (sur GBA), La Plata, Mar del Plata',factor:1.05,descripcion:'Clima templado oceánico. Veranos moderados. Zona de referencia base del cálculo estándar.',tempMax:33,tempMin:3,meses:[27,26,23,17,12,8,7,9,13,18,23,26],color:'#3b82f6'},
-  {id:'centro',label:'🌾 Centro',nombre:'Región Centro',provincias:'Córdoba, interior de Buenos Aires, La Pampa',factor:1.08,descripcion:'Clima templado continental. Veranos cálidos sin la humedad costera.',tempMax:34,tempMin:2,meses:[28,27,23,17,11,6,5,8,14,20,25,27],color:'#84cc16'},
-  {id:'patagonia',label:'🧉 Patagonia',nombre:'Patagonia Norte',provincias:'Neuquén, Río Negro, Chubut (norte)',factor:0.85,descripcion:'Clima templado-frío. Veranos cortos y suaves.',tempMax:28,tempMin:-5,meses:[22,21,17,11,5,1,0,2,8,14,19,21],color:'#a78bfa'},
-  {id:'sur',label:'❄️ Sur',nombre:'Patagonia Sur / TDF',provincias:'Santa Cruz, Tierra del Fuego, Ushuaia',factor:0.65,descripcion:'Clima subpolar oceánico. Muy bajo requerimiento de frío.',tempMax:18,tempMin:-12,meses:[14,13,9,5,-1,-5,-6,-4,1,6,11,13],color:'#67e8f9'},
-];
-let zonaActiva = null;
-function renderZonas(){
-  const sel = document.getElementById('zona-selector');
-  sel.innerHTML = ZONAS.map(z => `
-    <button class="zona-btn" id="zbtn-${z.id}" onclick="selectZona('${z.id}')" aria-label="Seleccionar zona ${z.nombre}">${z.label}<br/><span style="font-size:.58rem;font-weight:400;">${z.provincias.split(',')[0]}…</span></button>
-  `).join('');
-}
-const MESES_SHORT = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-function selectZona(id){
-  zonaActiva = id;
-  ZONAS.forEach(z => document.getElementById('zbtn-'+z.id).classList.remove('zona-active'));
-  document.getElementById('zbtn-'+id).classList.add('zona-active');
-  const z = ZONAS.find(x => x.id === id);
-  document.getElementById('zona-nombre').textContent = z.nombre.toUpperCase();
-  document.getElementById('zona-provincias').textContent = z.provincias;
-  document.getElementById('zona-factor-display').textContent = '×' + z.factor.toFixed(2);
-  document.getElementById('zona-factor-display').style.color = z.color;
-  const maxTemp = Math.max(...z.meses), minTemp = Math.min(...z.meses), range = maxTemp - minTemp || 1;
-  const barEl = document.getElementById('zona-temp-bar');
-  barEl.classList.remove('hidden');
-  barEl.innerHTML = z.meses.map((t,i) => {
-    const pct = Math.round(((t - minTemp) / range) * 80 + 10);
-    const hot = t > 25 ? '#ef4444' : t > 15 ? '#f97316' : t > 8 ? '#22d3ee' : '#3b82f6';
-    return `<div class="zona-month" style="height:${pct}%;background:${hot};opacity:.85;" aria-label="${MESES_SHORT[i]}: ${t}°C">${MESES_SHORT[i]}</div>`;
-  }).join('');
-  const det = document.getElementById('zona-detalle');
-  det.classList.remove('hidden');
-  det.innerHTML = [
-    {label:'Temperatura max. veraniega', val: z.tempMax + '°C', color: z.color},
-    {label:'Temperatura min. invernal',  val: z.tempMin + '°C', color: '#67e8f9'},
-    {label:'Factor corrector de carga',  val: '× ' + z.factor.toFixed(2), color: z.color},
-    {label:'Descripción climática',      val: z.descripcion, color: 'var(--muted)', small:true},
-  ].map(r => `
-    <div class="flex justify-between items-start gap-3">
-      <span class="mono text-xs" style="color:var(--muted);flex-shrink:0;">${r.label}</span>
-      <span style="font-size:${r.small?'.75rem':'.82rem'};color:${r.color};text-align:right;font-weight:${r.small?'400':'600'};">${r.val}</span>
-    </div>`).join('');
-}
-function getZonaFactor(){ return zonaActiva ? (ZONAS.find(z => z.id === zonaActiva)?.factor || 1.0) : 1.0; }
-
-// ══════════════════════════════════════════
-//  PANEL 1 — REFRIGERACIÓN (Cálculo de frigorías)
-// ══════════════════════════════════════════
-function updateVol(){
-  const v=(parseFloat(document.getElementById('largo').value)||0)*(parseFloat(document.getElementById('ancho').value)||0)*(parseFloat(document.getElementById('alto').value)||0);
-  document.getElementById('vol-preview').textContent=v.toFixed(1)+' m³';
-}
-updateVol();
-const COMERCIALES=[2250,3000,4500,5500,6000,7500,9000,12000,18000,24000];
-function nextComercial(fg){return COMERCIALES.find(c=>c>=fg)||COMERCIALES[COMERCIALES.length-1];}
-function getCaneria(fgCom){
-  if(fgCom<=3000)return{liquido:'1/4\" (6.35 mm)',gas:'3/8\" (9.52 mm)',aislante:'13 mm espesor',nota:'Split estándar inverter 1-1.5 Tn'};
-  if(fgCom<=5500)return{liquido:'1/4\" (6.35 mm)',gas:'1/2\" (12.7 mm)',aislante:'13–19 mm espesor',nota:'Split inverter 2 Tn / multisplit'};
-  if(fgCom<=9000)return{liquido:'3/8\" (9.52 mm)',gas:'5/8\" (15.88 mm)',aislante:'19 mm espesor',nota:'Cassette / conducto 3-4 Tn'};
-  return{liquido:'3/8\" (9.52 mm)',gas:'3/4\" (19.05 mm)',aislante:'19–25 mm espesor',nota:'VRF / central > 4 Tn'};
-}
-function showResult(id){
-  const el=document.getElementById(id);
-  el.classList.remove('hidden');
-  el.querySelectorAll('.pop-in').forEach(e=>{e.style.animation='none';e.offsetHeight;e.style.animation='';});
-  setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),50);
-}
-function calcularFrigo(){
-  const largo=parseFloat(document.getElementById('largo').value)||0;
-  const ancho=parseFloat(document.getElementById('ancho').value)||0;
-  const alto=parseFloat(document.getElementById('alto').value)||0;
-  const sol=document.getElementById('sol').checked;
-  const pers=parseInt(document.getElementById('personas').value);
-  if(!largo||!ancho||!alto){
-    ['largo','ancho','alto'].forEach(id=>{const el=document.getElementById(id);el.style.borderColor='#ff4444';setTimeout(()=>el.style.borderColor='',1500);});
-    return;
-  }
-  const vol=largo*ancho*alto, base=vol*50, solFg=sol?base*0.15:0, persFg=pers>2?(pers-2)*150:0;
-  const appFg=getAppFg(), factor=getZonaFactor();
-  const subtotal=Math.round((base+solFg+persFg+appFg));
-  const total=Math.round(subtotal*factor), com=nextComercial(total), can=getCaneria(com);
-  const zonaInfo=zonaActiva?ZONAS.find(z=>z.id===zonaActiva):null;
-  document.getElementById('fg-total').textContent=total.toLocaleString('es-AR');
-  document.getElementById('fg-comercial').textContent=com.toLocaleString('es-AR');
-  const items=[
-    {label:`Volumen (${largo}×${ancho}×${alto} = ${vol.toFixed(1)} m³) × 50 fg/m³`,value:Math.round(base),color:'var(--accent)'},
-    sol?{label:'Sol directo (+15% carga térmica)',value:'+'+Math.round(solFg),color:'var(--warn)'}:null,
-    pers>2?{label:`Personas extra (${pers-2} × 150 fg)`,value:'+'+persFg,color:'#a78bfa'}:null,
-    appFg>0?{label:'Cargas térmicas de electrodomésticos (+)',value:'+'+appFg,color:'#f59e0b'}:null,
-    zonaInfo&&factor!==1?{label:`Factor zona climática ${zonaInfo.nombre} (×${factor.toFixed(2)})`,value:`×${factor.toFixed(2)} → ${total.toLocaleString('es-AR')} fg`,color:zonaInfo.color}:null,
-  ].filter(Boolean);
-  document.getElementById('desglose').innerHTML=items.map(i=>`
-    <div class="flex justify-between items-center gap-4">
-      <span class="mono text-xs" style="color:var(--muted);">${i.label}</span>
-      <span class="mono text-sm font-medium" style="color:${i.color};flex-shrink:0;">${typeof i.value==='number'?i.value.toLocaleString('es-AR'):i.value}${typeof i.value==='number'?' fg':''}</span>
-    </div>`).join('');
-  document.getElementById('equipo-info').innerHTML=`
-    <div class="flex flex-wrap gap-2 items-center">
-      <span class="tag tag-blue">${can.nota}</span>
-      <span class="mono text-xs" style="color:var(--muted);">Mínimo sugerido: <strong style="color:var(--text);">${com.toLocaleString('es-AR')} fg/h</strong></span>
-      ${zonaInfo?`<span class="tag" style="background:rgba(245,158,11,.1);color:#f59e0b;">📍 ${zonaInfo.nombre}</span>`:''}
-    </div>`;
-  const pipes=[{label:'Línea de líquido',val:can.liquido,color:'#60a5fa'},{label:'Línea de gas (aspiración)',val:can.gas,color:'var(--accent)'},{label:'Aislante AF Armaflex',val:can.aislante,color:'#a78bfa'}];
-  document.getElementById('canerias').innerHTML=pipes.map(p=>`
-    <div class="pipe-row"><div class="pipe-dot" style="background:${p.color};"></div><span style="font-size:.88rem;color:var(--muted);flex:1;">${p.label}</span><span class="mono text-sm font-medium" style="color:${p.color};">${p.val}</span></div>`).join('');
-  const matRows=[
-    {label:'Desagüe condensado',val:'Caño PVC ø16–20 mm, pendiente min. 2%'},
-    {label:'Alimentación eléctrica',val:com<=5500?'Línea 2,5 mm² (220V monofásico)':'Línea 4 mm² (380V trifásico)'},
-    {label:'Soporte unidad exterior',val:'Ménsula galvanizada c/ tacos expansivos'},
-    {label:'Pasacables',val:'Casquillo antivibratorio ø50 mm'},
-  ];
-  document.getElementById('otros-mat').innerHTML=matRows.map(r=>`
-    <div class="pipe-row"><div class="pipe-dot" style="background:var(--border);border:1.5px solid var(--muted);"></div><span style="font-size:.82rem;color:var(--muted);flex:1;">${r.label}</span><span class="mono text-xs" style="color:var(--text);text-align:right;max-width:200px;">${r.val}</span></div>`).join('');
-  showResult('resultado-frigo');
-}
-
-// ══════════════════════════════════════════
-//  PANEL 2 — ELECTRICIDAD
-// ══════════════════════════════════════════
-const TERMICAS=[10,16,20,25,32,40,63,80];
-function nextTermica(amp){return TERMICAS.find(t=>t>=amp)||TERMICAS[TERMICAS.length-1];}
-function getCable(amp){
-  if(amp<=11)return{seccion:'1.5 mm²',color:'#60a5fa',note:'Circuitos de iluminación / cargas livianas'};
-  if(amp<=16)return{seccion:'2.5 mm²',color:'var(--accent)',note:'Circuitos tomacorrientes generales'};
-  if(amp<=24)return{seccion:'4 mm²',color:'var(--elec)',note:'Equipos de alta potencia (AC, lavavajillas)'};
-  if(amp<=31)return{seccion:'6 mm²',color:'var(--elec2)',note:'Cargas industriales livianas / tablero'};
-  return{seccion:'10 mm² o más',color:'var(--warn)',note:'Cargas industriales — consultar calculista'};
-}
-function calcularElec(){
-  const watts=parseFloat(document.getElementById('e-watts').value)||0;
-  const voltaje=parseFloat(document.getElementById('e-voltaje').value);
-  const wInput=document.getElementById('e-watts');
-  if(!watts){wInput.style.borderColor='#ff4444';setTimeout(()=>wInput.style.borderColor='',1500);return;}
-  const amp=watts/voltaje, termica=nextTermica(amp), cable=getCable(amp);
-  document.getElementById('e-amp').textContent=amp.toFixed(2)+' A';
-  document.getElementById('e-termica').textContent=termica+' A';
-  document.getElementById('e-desglose').innerHTML=`
-    <div class="flex justify-between items-center gap-4"><span class="mono text-xs" style="color:var(--muted);">I = ${watts.toLocaleString('es-AR')} W ÷ ${voltaje} V</span><span class="mono text-sm font-medium" style="color:var(--elec);">${amp.toFixed(2)} A</span></div>
-    <div class="flex justify-between items-center gap-4"><span class="mono text-xs" style="color:var(--muted);">Valor comercial inmediato superior</span><span class="mono text-sm font-medium" style="color:var(--elec2);">${termica} A</span></div>`;
-  document.getElementById('e-cable').innerHTML=`<div class="flex items-center gap-3 mb-2"><div class="pipe-dot" style="background:${cable.color};width:12px;height:12px;"></div><span style="font-size:1.2rem;font-weight:800;color:${cable.color};">${cable.seccion}</span></div><p style="font-size:.83rem;color:var(--muted);">${cable.note}</p>`;
-  const extras=[{label:'Disyuntor diferencial',val:'Id = 30 mA — clase A o AC'},{label:'Puesta a tierra',val:'Obligatoria — jabalina + cable verde/amarillo'},{label:'Canalización',val:watts<=3000?'Caño corrugado ø20 mm':'Caño corrugado ø25–32 mm'},{label:'Tensión de trabajo',val:voltaje===220?'220 V monofásico (fase + neutro)':'380 V trifásico (3 fases + neutro)'}];
-  document.getElementById('e-extras').innerHTML=extras.map(r=>`<div class="pipe-row"><div class="pipe-dot" style="background:rgba(245,200,66,.4);"></div><span style="font-size:.82rem;color:var(--muted);flex:1;">${r.label}</span><span class="mono text-xs" style="color:var(--text);text-align:right;max-width:200px;">${r.val}</span></div>`).join('');
-  showResult('resultado-elec');
-}
-
-// ══════════════════════════════════════════
-//  PANEL 3 — LEY DE OHM
-// ══════════════════════════════════════════
-function fmtNum(n){if(n===0)return'0';if(Math.abs(n)<0.001)return n.toExponential(3);if(Math.abs(n)>=10000)return n.toExponential(3);if(Number.isInteger(n))return n.toLocaleString('es-AR');return parseFloat(n.toPrecision(5)).toLocaleString('es-AR',{maximumFractionDigits:5});}
-function calcularOhm(){
-  const V=parseFloat(document.getElementById('o-voltaje').value);
-  const R=parseFloat(document.getElementById('o-resist').value);
-  if(!V||!R||R===0){
-    if(!V){const el=document.getElementById('o-voltaje');el.style.borderColor='#ff4444';setTimeout(()=>el.style.borderColor='',1500);}
-    if(!R){const el=document.getElementById('o-resist');el.style.borderColor='#ff4444';setTimeout(()=>el.style.borderColor='',1500);}
-    return;
-  }
-  const I=V/R, P=V*I;
-  const dispI=I>=1000?fmtNum(I*1000)+' mA':fmtNum(I)+' A';
-  const dispP=P>=1000?fmtNum(P/1000)+' kW':fmtNum(P)+' W';
-  document.getElementById('o-amp-res').textContent=dispI;
-  document.getElementById('o-watt-res').textContent=dispP;
-  const rows=[
-    {label:'Voltaje (dado)',val:fmtNum(V)+' V',color:'#a78bfa'},
-    {label:'Resistencia (dada)',val:R>=1000?fmtNum(R/1000)+'kΩ':fmtNum(R)+'Ω',color:'#a78bfa'},
-    {label:'Corriente I = V/R',val:dispI,color:'var(--ohm)'},
-    {label:'Potencia P = V × I',val:dispP,color:'var(--elec)'},
-    {label:'Energía (1h)',val:fmtNum(P/1000)+' Wh/h',color:'var(--muted)'},
-  ];
-  document.getElementById('o-tabla').innerHTML=rows.map(r=>`<div class="flex justify-between items-center gap-4"><span class="mono text-xs" style="color:var(--muted);">${r.label}</span><span class="mono text-sm font-medium" style="color:${r.color};flex-shrink:0;">${r.val}</span></div>`).join('');
-  showResult('resultado-ohm');
-}
-
-// ══════════════════════════════════════════
-//  PANEL 4 — PRESUPUESTOS
-// ══════════════════════════════════════════
-function agregarFila(){
-  const container=document.getElementById('items-container');
-  const f=document.createElement('div');
-  f.className='item-row grid grid-cols-12 gap-2 items-center border-b border-gray-800 pb-3';
-  f.innerHTML=`<div class="col-span-6 field field-presup"><input type="text" class="item-desc font-sans text-sm" placeholder="Descripción del trabajo o material" style="padding:.5rem;"/></div><div class="col-span-2 field field-presup"><input type="number" class="item-cant text-center" placeholder="Cant" min="1" value="1" style="padding:.5rem;" oninput="recalcularPresupuesto()"/></div><div class="col-span-3 field field-presup"><input type="number" class="item-precio" placeholder="$ Precio" min="0" style="padding:.5rem;" oninput="recalcularPresupuesto()"/></div><div class="col-span-1 text-center"><button class="text-red-500 font-bold text-lg hover:text-red-400" onclick="eliminarFila(this)" aria-label="Eliminar fila">×</button></div>`;
-  container.appendChild(f);
-}
-function eliminarFila(btn){
-  const filas=document.querySelectorAll('.item-row');
-  if(filas.length>1){btn.closest('.item-row').remove();recalcularPresupuesto();}
-  else{const row=btn.closest('.item-row');row.querySelector('.item-desc').value='';row.querySelector('.item-cant').value='1';row.querySelector('.item-precio').value='';recalcularPresupuesto();}
-}
-function recalcularPresupuesto(){
-  let total=0;
-  document.querySelectorAll('.item-row').forEach(fila=>{
-    const cant=parseFloat(fila.querySelector('.item-cant').value)||0;
-    const precio=parseFloat(fila.querySelector('.item-precio').value)||0;
-    total+=cant*precio;
-  });
-  document.getElementById('p-total').textContent='$ '+total.toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
-}
-function exportarPDF(){
-  const cliente=document.getElementById('p-cliente').value.trim()||'Cliente General';
-  const concepto=document.getElementById('p-concepto').value.trim()||'Servicio Técnico Aire Acondicionado';
-  const fechaActual=new Date().toLocaleDateString('es-AR');
-  const filasHtml=[];let totalAcumulado=0;
-  document.querySelectorAll('.item-row').forEach(fila=>{
-    const desc=fila.querySelector('.item-desc').value.trim()||'Servicio sin descripción';
-    const cant=parseFloat(fila.querySelector('.item-cant').value)||1;
-    const precio=parseFloat(fila.querySelector('.item-precio').value)||0;
-    const subtotal=cant*precio;totalAcumulado+=subtotal;
-    filasHtml.push(`<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:10px;font-size:13px;color:#334155;">${desc}</td><td style="padding:10px;font-size:13px;text-align:center;color:#334155;">${cant}</td><td style="padding:10px;font-size:13px;text-align:right;color:#334155;">$ ${precio.toLocaleString('es-AR',{minimumFractionDigits:2})}</td><td style="padding:10px;font-size:13px;text-align:right;font-weight:600;color:#0f172a;">$ ${subtotal.toLocaleString('es-AR',{minimumFractionDigits:2})}</td></tr>`);
-  });
-  const el=document.createElement('div');
-  el.style.cssText='padding:40px;background:#fff;color:#000;';
-  el.innerHTML=`<div style="font-family:Arial,sans-serif;max-width:700px;margin:0 auto;"><table style="width:100%;border-collapse:collapse;margin-bottom:30px;"><tr><td><h1 style="margin:0;font-size:26px;color:#0f172a;">PRESUPUESTO TÉCNICO</h1><p style="margin:4px 0 0;font-size:12px;color:#64748b;font-family:monospace;">García Climatización — Caseros, GBA</p></td><td style="text-align:right;vertical-align:top;"><p style="margin:0;font-size:13px;font-weight:bold;color:#0f172a;">Fecha: ${fechaActual}</p></td></tr></table><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:15px;margin-bottom:30px;"><p style="margin:0 0 6px;font-size:12px;text-transform:uppercase;color:#64748b;font-weight:bold;letter-spacing:.05em;">Detalles del trabajo</p><p style="margin:0 0 4px;font-size:15px;color:#0f172a;"><strong>Cliente:</strong> ${cliente}</p><p style="margin:0;font-size:15px;color:#0f172a;"><strong>Concepto:</strong> ${concepto}</p></div><table style="width:100%;border-collapse:collapse;margin-bottom:30px;"><thead><tr style="background:#0f172a;color:#fff;"><th style="padding:10px;text-align:left;font-size:12px;">DESCRIPCIÓN</th><th style="padding:10px;text-align:center;font-size:12px;width:60px;">CANT.</th><th style="padding:10px;text-align:right;font-size:12px;width:110px;">UNITARIO</th><th style="padding:10px;text-align:right;font-size:12px;width:120px;">SUBTOTAL</th></tr></thead><tbody>${filasHtml.join('')}</tbody></table><table style="width:100%;border-collapse:collapse;"><tr><td style="width:50%;"></td><td style="width:50%;"><table style="width:100%;border-collapse:collapse;"><tr style="background:#f1f5f9;"><td style="padding:12px;font-size:14px;font-weight:bold;color:#0f172a;">TOTAL:</td><td style="padding:12px;font-size:18px;font-weight:800;text-align:right;color:#b91c1c;">$ ${totalAcumulado.toLocaleString('es-AR',{minimumFractionDigits:2})}</td></tr></table></td></tr></table><div style="margin-top:60px;border-top:1px dashed #cbd5e1;padding-top:15px;text-align:center;"><p style="margin:0;font-size:11px;color:#94a3b8;">García Climatización — Caseros, Buenos Aires · WhatsApp: +54 11 2542-6499</p><p style="margin:4px 0 0;font-size:11px;color:#94a3b8;">Presupuesto orientativo. Validez: 10 días desde la fecha de emisión.</p></div></div>`;
-  html2pdf().set({margin:10,filename:`Presupuesto_Garcia_${cliente.replace(/\s+/g,'_')}.pdf`,image:{type:'jpeg',quality:.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}}).from(el).save();
-}
-
-// ENTER KEY
-document.addEventListener('keydown',e=>{
-  if(e.key!=='Enter')return;
-  const activePanel=document.querySelector('.tab-panel.active');
-  if(!activePanel)return;
-  const active=activePanel.id;
-  if(active==='panel-frigo')calcularFrigo();
-  if(active==='panel-elec')calcularElec();
-  if(active==='panel-ohm')calcularOhm();
-});
-
-// INIT
-renderAppliances();
-renderZonas();
 </script>
 </body>
 </html>
