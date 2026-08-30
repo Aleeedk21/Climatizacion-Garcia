@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- ══════════════════════════════════════════
+     FAVICON — ícono AG en la pestaña del navegador
+     ══════════════════════════════════════════ -->
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+
+<!-- ══════════════════════════════════════════
      SEO CORE — Título + Meta Description
      ══════════════════════════════════════════ -->
 <title>Instalación y Reparación Aire Acondicionado Caseros GBA | García Climatización — Splits, Carga de Gas y Mantenimiento</title>
@@ -711,21 +721,36 @@
     padding: 80px 40px;
   }
 
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr;
-    grid-template-rows: 280px 240px 240px 240px 240px;
-    gap: 8px;
+  .gallery-carousel-wrap {
+    position: relative;
     margin-top: 40px;
-    max-width: 1100px;
-    border-radius: 8px;
-    overflow: hidden;
   }
+
+  .gallery-grid {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 4px 4px 20px;
+    margin: 0 -4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--cold) transparent;
+  }
+  .gallery-grid::-webkit-scrollbar { height: 6px; }
+  .gallery-grid::-webkit-scrollbar-thumb { background: rgba(79,195,232,.35); border-radius: 4px; }
+  .gallery-grid::-webkit-scrollbar-track { background: transparent; }
 
   .gallery-item {
     position: relative;
     overflow: hidden;
     background: var(--steel);
+    border-radius: 8px;
+    flex: 0 0 auto;
+    width: min(340px, 78vw);
+    height: 260px;
+    scroll-snap-align: start;
   }
 
   .gallery-item img,
@@ -752,7 +777,7 @@
 
   .gallery-caption {
     position: absolute;
-    bottom: 14px; left: 16px;
+    bottom: 14px; left: 16px; right: 16px;
     font-family: 'Barlow Condensed', sans-serif;
     font-size: .75rem; font-weight: 600; letter-spacing: .12em;
     text-transform: uppercase;
@@ -760,15 +785,26 @@
     z-index: 1;
   }
 
+  .gallery-arrow {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(10,15,30,.75);
+    border: 1px solid rgba(79,195,232,.4);
+    color: var(--cold);
+    font-size: 1.2rem;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: background .2s, border-color .2s;
+  }
+  .gallery-arrow:hover { background: rgba(79,195,232,.2); border-color: var(--cold); }
+  .gallery-arrow-prev { left: -6px; }
+  .gallery-arrow-next { right: -6px; }
+
   @media (max-width: 768px) {
-    .gallery-grid {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: repeat(8, 180px);
-    }
-    .gallery-item:first-child,
-    .gallery-item:nth-child(4) {
-      grid-column: 1 / -1;
-    }
+    .gallery-arrow { display: none; }
   }
 
   .shop-grid {
@@ -1120,13 +1156,7 @@
     .comp-cell.good   { grid-column: 1; }
     .why-visual-title { font-size: 1.1rem; }
 
-    /* ── Galería → 1 columna ── */
-    .gallery-grid {
-      grid-template-columns: 1fr;
-      grid-template-rows: repeat(14, 220px);
-    }
-    .gallery-item:first-child,
-    .gallery-item:nth-child(4) { grid-column: 1; }
+    /* ── Galería → el carrusel ya es responsive por sí solo ── */
 
     /* ── Shop ── */
     .shop-grid { grid-template-columns: 1fr; }
@@ -1154,7 +1184,6 @@
     .hero h1 { font-size: 1.9rem; }
     .section-title { font-size: 1.5rem; }
     .services-grid { gap: 1px; }
-    .gallery-grid { grid-template-rows: repeat(14, 180px); }
   }
 </style>
 
@@ -1168,14 +1197,22 @@
   <a href="/" class="logo" aria-label="AG García Climatización — inicio">
     <img src="logo-ag-garcia.png" alt="AG García Climatización — logo">
   </a>
-  <a href="https://wa.me/541125426499?text=Hola%2C%20necesito%20un%20servicio%20t%C3%A9cnico%20para%20mi%20aire%20acondicionado%20split"
-     class="header-cta"
-     target="_blank"
-     rel="noopener noreferrer"
-     aria-label="Contactar por WhatsApp para servicio técnico de aire acondicionado">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.524 5.855L.057 23.215a.75.75 0 0 0 .916.932l5.565-1.457A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.68-.512-5.21-1.407l-.374-.22-3.867 1.013 1.035-3.76-.242-.386A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-    Escribir por WhatsApp
-  </a>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="https://instagram.com/garcia.climatizacion" target="_blank" rel="noopener"
+       aria-label="Seguinos en Instagram — @garcia.climatizacion"
+       style="color:var(--white);display:flex;align-items:center;opacity:.85;transition:opacity .2s;"
+       onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.85">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.98-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="https://wa.me/541125426499?text=Hola%2C%20necesito%20un%20servicio%20t%C3%A9cnico%20para%20mi%20aire%20acondicionado%20split"
+       class="header-cta"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Contactar por WhatsApp para servicio técnico de aire acondicionado">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.524 5.855L.057 23.215a.75.75 0 0 0 .916.932l5.565-1.457A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.68-.512-5.21-1.407l-.374-.22-3.867 1.013 1.035-3.76-.242-.386A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Escribir por WhatsApp
+    </a>
+  </div>
 </header>
 
 <!-- ══════════════════════════════════════════
@@ -1305,9 +1342,18 @@
 <section class="gallery" aria-labelledby="gallery-title">
   <p class="section-label reveal">El trabajo en detalle</p>
   <h2 class="section-title reveal" id="gallery-title">Herramientas y procedimientos de refrigeración reales</h2>
-  <div class="gallery-grid reveal">
+  <div class="gallery-carousel-wrap reveal">
+    <button class="gallery-arrow gallery-arrow-prev" aria-label="Ver fotos anteriores" onclick="scrollGallery(-1)">‹</button>
+    <button class="gallery-arrow gallery-arrow-next" aria-label="Ver fotos siguientes" onclick="scrollGallery(1)">›</button>
+    <div class="gallery-grid" id="gallery-carousel">
 
-    <!-- Fila 1 — grande + 2 medianas -->
+    <div class="gallery-item">
+      <img src="IMG-20260829-WA0057.jpg"
+           alt="Técnico realizando la conexión eléctrica de una evaporadora de aire acondicionado recién instalada — García Climatización Caseros"
+           loading="lazy"
+           onerror="this.closest('.gallery-item').style.background='#1e2d40'">
+      <p class="gallery-caption">Conexión y puesta a punto de una evaporadora recién instalada</p>
+    </div>
     <div class="gallery-item">
       <img src="IMG-20260809-WA0022.jpeg"
            alt="Funda de contención azul instalada sobre evaporadora para limpieza profunda sin ensuciar el ambiente — García Climatización Caseros"
@@ -1330,7 +1376,6 @@
       <p class="gallery-caption">Evaporadora sin carcasa — acceso completo al intercambiador</p>
     </div>
 
-    <!-- Fila 2 — 3 iguales -->
     <div class="gallery-item">
       <img src="IMG-20260809-WA0031.jpeg"
            alt="Limpieza a presión de evaporadora de aire acondicionado con funda contenedora azul — procedimiento profesional García Climatización"
@@ -1353,7 +1398,6 @@
       <p class="gallery-caption">Bomba de vacío Wipcool — vaciado del circuito antes de cargar gas</p>
     </div>
 
-    <!-- Fila 3 — resultado final -->
     <div class="gallery-item">
       <img src="IMG-20260821-WA0180.jpeg"
            alt="Evaporadora de aire acondicionado split terminada y funcionando después del service — García Climatización Caseros"
@@ -1369,7 +1413,6 @@
       <p class="gallery-caption">Interior de la evaporadora — filtros e intercambiador ya limpios</p>
     </div>
 
-    <!-- Fila 4 — instrumental de gas y taller -->
     <div class="gallery-item">
       <img src="IMG_20260726_192931_844.jpg"
            alt="Tubos de oxígeno y acetileno con manómetros para soldadura y reparación de circuitos de refrigeración — García Climatización"
@@ -1392,7 +1435,6 @@
       <p class="gallery-caption">Banco de pruebas — recuperación de gas y diagnóstico de la unidad condensadora</p>
     </div>
 
-    <!-- Fila 5 — evaporadora abierta + video del procedimiento -->
     <div class="gallery-item">
       <img src="IMG_20260821_140435_525.jpg"
            alt="Evaporadora de aire acondicionado montada en pared antes de la limpieza profunda — García Climatización Caseros"
@@ -1413,6 +1455,7 @@
       <p class="gallery-caption">El procedimiento en acción</p>
     </div>
 
+    </div>
   </div>
 </section>
 
@@ -1678,7 +1721,24 @@
       +54 11 2542-6499
     </a>
   </address>
+  <a href="https://instagram.com/garcia.climatizacion" target="_blank" rel="noopener"
+     style="display:inline-flex;align-items:center;gap:8px;color:var(--cold);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.04em;"
+     aria-label="Seguinos en Instagram — @garcia.climatizacion">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.98-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    @garcia.climatizacion
+  </a>
 </footer>
+
+<script>
+  // ── GALERÍA / CARRUSEL ──
+  function scrollGallery(direction) {
+    const track = document.getElementById('gallery-carousel');
+    if (!track) return;
+    const card = track.querySelector('.gallery-item');
+    const step = card ? card.getBoundingClientRect().width + 16 : 340;
+    track.scrollBy({ left: direction * step, behavior: 'smooth' });
+  }
+</script>
 
 <script>
   // Scroll reveal
