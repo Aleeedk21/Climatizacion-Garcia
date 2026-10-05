@@ -84,7 +84,6 @@
   "description": "Servicio técnico de aire acondicionado en Caseros. Instalación, reparación y mantenimiento de equipos de aire acondicionado split, carga de gas refrigerante, limpieza profunda de evaporadoras con instrumental profesional.",
   "url": "https://garciaclimatizacion.com.ar/",
   "telephone": "+54-11-2542-6499",
-  "priceRange": "$$",
   "currenciesAccepted": "ARS",
   "paymentAccepted": "Efectivo, Transferencia bancaria",
   "areaServed": [
@@ -93,7 +92,6 @@
     {"@type": "City", "name": "San Martín"},
     {"@type": "City", "name": "Ramos Mejía"},
     {"@type": "City", "name": "Morón"},
-    {"@type": "City", "name": "Palermo"},
     {"@type": "AdministrativeArea", "name": "Gran Buenos Aires zona oeste"}
   ],
   "geo": {
@@ -111,7 +109,6 @@
     "@type": "ContactPoint",
     "telephone": "+54-11-2542-6499",
     "contactType": "customer service",
-    "contactOption": "TollFree",
     "availableLanguage": "Spanish",
     "areaServed": "AR"
   },
@@ -139,43 +136,54 @@
           "@type": "Service",
           "name": "Instalación de aire acondicionado split",
           "description": "Instalación completa de equipos de aire acondicionado split nuevos en Caseros y zona oeste GBA. Tendido de cañerías de cobre, instalación de unidad interior y exterior, conexión eléctrica y puesta en marcha con verificación de presiones."
-        }
+        },
+        "price": "250000",
+        "priceCurrency": "ARS"
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Mantenimiento preventivo de aire acondicionado",
-          "description": "Limpieza de filtros, revisión de conexiones eléctricas, control del circuito de refrigeración y verificación de temperaturas de trabajo."
-        }
+          "name": "Mantenimiento preventivo y revisión técnica de aire acondicionado",
+          "description": "Revisión técnica del equipo con manómetros y tester: revisión de conexiones eléctricas, control del circuito de refrigeración y verificación de temperaturas de trabajo."
+        },
+        "price": "30000",
+        "priceCurrency": "ARS"
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Limpieza profunda de evaporadora de aire acondicionado split",
-          "description": "Descontaminación completa del intercambiador con productos bactericidas y fungicidas. Eliminación de hongos y olores."
-        }
+          "name": "Limpieza profunda de evaporadora y condensadora de aire acondicionado split",
+          "description": "Descontaminación completa del intercambiador con productos bactericidas y fungicidas. Limpieza total de unidad interior y exterior. Eliminación de hongos y olores."
+        },
+        "price": "120000",
+        "priceCurrency": "ARS"
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Carga de gas refrigerante R32 y R410A",
+          "name": "Carga de gas refrigerante R32, R410A y R22",
           "description": "Diagnóstico con manómetros profesionales para determinar pérdida o falta de carga. Reparación de fuga antes de cargar gas."
-        }
+        },
+        "price": "100000",
+        "priceCurrency": "ARS"
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Diagnóstico y reparación de fallas en splits",
+          "name": "Reparación de fallas en splits",
           "description": "Diagnóstico con instrumental electrónico profesional: el equipo no arranca, enfría poco, muestra error o hace ruido."
         }
       }
     ]
   },
+  "image": "https://garciaclimatizacion.com.ar/og-image.jpg",
+  "logo": "https://garciaclimatizacion.com.ar/logo-ag-garcia.png",
   "sameAs": [
+    "https://instagram.com/garcia.climatizacion",
     "https://wa.me/541125426499"
   ]
 }
@@ -194,7 +202,15 @@
       "name": "¿Cuánto cuesta cargar el gas de un aire acondicionado en Caseros?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "El costo de la carga de gas refrigerante depende del tipo de gas (R32, R410A o R22) y de la cantidad necesaria. Antes de cargar, diagnosticamos la presión con manómetros para determinar si hay pérdida activa y cuánto gas requiere el equipo. Escribinos por WhatsApp para una consulta sin cargo."
+        "text": "El valor de referencia de la carga de gas refrigerante es de $100.000 (octubre 2026). Puede variar según el tipo de gas (R32, R410A o R22) y si hay una pérdida activa que reparar antes de cargar. Antes de cargar diagnosticamos la presión con manómetros; la revisión técnica con manómetros profesionales cuesta $30.000. Escribinos por WhatsApp para confirmar el presupuesto de tu equipo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto cuesta instalar un aire acondicionado split en Caseros?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La instalación de un split de 3000 a 4500 frigorías tiene un valor de referencia de $250.000 (octubre 2026), con materiales y mano de obra incluidos. La limpieza total de evaporadora y condensadora, unidad interior y exterior, cuesta $120.000. Escribinos por WhatsApp con el modelo del equipo y tu dirección para confirmar el presupuesto."
       }
     },
     {
@@ -580,6 +596,22 @@
     color: var(--muted); line-height: 1.65;
   }
 
+  .service-price {
+    margin-top: 18px; padding-top: 14px;
+    border-top: 1px solid rgba(200,232,245,.1);
+    font-size: .85rem; color: var(--muted);
+  }
+  .service-price strong {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.5rem; font-weight: 800;
+    color: var(--cold); letter-spacing: .01em;
+    margin-right: 8px;
+  }
+  .services-note {
+    max-width: 1100px; margin-top: 20px;
+    font-size: .85rem; color: var(--muted);
+  }
+
   .why { background: var(--dark); border-top: 1px solid rgba(200,232,245,.07); }
 
   .why-grid {
@@ -883,156 +915,19 @@
     font-size: 1.6rem;
     color: var(--cold);
   }
-  .btn-add-cart {
+  .btn-shop-consult {
     background: var(--blue);
     color: #fff;
-    border: none;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
     font-size: .9rem;
     letter-spacing: .04em;
     padding: 10px 16px;
     border-radius: 4px;
-    cursor: pointer;
-    transition: background .2s;
-  }
-  .btn-add-cart:hover { background: #1b62b3; }
-
-  #cart-float-btn {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    background: var(--blue);
-    color: #fff;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 20px rgba(45,125,210,0.4);
-    cursor: pointer;
-    z-index: 150;
-    border: 1px solid rgba(255,255,255,0.1);
-    transition: transform .2s;
-  }
-  #cart-float-btn:hover { transform: scale(1.05); }
-  #cart-count-badge {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    background: #ff4f69;
-    color: #fff;
-    font-size: .75rem;
-    font-weight: 700;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  #cart-sidebar {
-    position: fixed;
-    top: 0;
-    right: -400px;
-    width: 400px;
-    height: 100vh;
-    background: rgba(11,18,30,0.96);
-    backdrop-filter: blur(16px);
-    border-left: 1px solid rgba(200,232,245,.1);
-    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-    z-index: 200;
-    transition: right .3s ease;
-    display: flex;
-    flex-direction: column;
-  }
-  @media (max-width: 480px) {
-    #cart-sidebar { width: 100%; right: -100%; }
-  }
-  #cart-sidebar.open { right: 0; }
-  .cart-header {
-    padding: 24px;
-    border-bottom: 1px solid rgba(200,232,245,.08);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .cart-header h3 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 1.5rem;
-  }
-  .cart-close-btn {
-    background: transparent;
-    border: none;
-    color: var(--muted);
-    font-size: 1.8rem;
-    cursor: pointer;
-  }
-  .cart-items-list {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 24px;
-  }
-  .cart-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 16px;
-    margin-bottom: 16px;
-    border-bottom: 1px solid rgba(200,232,245,.05);
-  }
-  .cart-item-details { flex-grow: 1; margin-right: 12px; }
-  .cart-item-title { font-weight: 600; font-size: .95rem; margin-bottom: 4px; }
-  .cart-item-price { color: var(--cold); font-size: .85rem; font-family: monospace; }
-  .cart-item-actions { display: flex; align-items: center; gap: 8px; }
-  .cart-qty-btn {
-    background: var(--steel);
-    color: var(--white);
-    border: none;
-    width: 26px;
-    height: 26px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  .cart-qty-btn:hover { background: #243549; }
-  .cart-qty-val { font-family: monospace; font-size: .95rem; width: 20px; text-align: center; }
-  .cart-footer {
-    padding: 24px;
-    border-top: 1px solid rgba(200,232,245,.08);
-    background: rgba(0,0,0,0.2);
-  }
-  .cart-total-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  .cart-total-row span { font-size: 1.1rem; color: var(--muted); }
-  .cart-total-price { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.8rem; color: var(--white); }
-  .btn-submit-order {
-    width: 100%;
-    background: #25d366;
-    color: #fff;
-    border: none;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 1.1rem;
-    letter-spacing: .04em;
-    padding: 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
     text-decoration: none;
     transition: background .2s;
   }
-  .btn-submit-order:hover { background: #1ebe59; }
+  .btn-shop-consult:hover { background: #1b62b3; }
 
   .cta-section {
     background: var(--navy);
@@ -1180,10 +1075,6 @@
     /* ── Footer ── */
     footer { flex-direction: column; text-align: center; padding: 24px 20px; }
     .footer-info { text-align: center; }
-
-    /* ── Carrito sidebar ── */
-    #cart-sidebar { width: 100%; right: -100%; }
-    #cart-float-btn { bottom: 16px; right: 16px; width: 52px; height: 52px; }
   }
 
   /* ── Extra pequeño (< 400px) ── */
@@ -1240,7 +1131,7 @@
   <h1>Instalación, reparación y mantenimiento de splits en Caseros — <em>diagnóstico con instrumental, sin improvisaciones.</em></h1>
 
   <p class="hero-sub">
-    Instalación de equipos nuevos, carga de gas R32/R410A, limpieza de evaporadoras y diagnosis de fallas. <strong>Formación técnica en electrónica y refrigeración</strong>, manómetros profesionales, detector de fugas y bomba de vacío. Zona oeste del Gran Buenos Aires.
+    ¿El split no enfría y no querés pagar dos veces el gas? Medimos presión, buscamos la fuga y recién ahí cargamos. Instalación de equipos nuevos, carga de gas R32/R410A/R22, limpieza de evaporadoras y diagnóstico de fallas, con manómetros profesionales, detector de fugas y bomba de vacío. <strong>Formación técnica en electrónica y refrigeración</strong>. Zona oeste del Gran Buenos Aires.
   </p>
 
   <div class="hero-actions">
@@ -1264,7 +1155,7 @@
     <div class="strip-item" role="listitem"><span aria-hidden="true">◈</span> Instalación de splits nuevos</div>
     <div class="strip-item" role="listitem"><span aria-hidden="true">◈</span> Mantenimiento preventivo de aire acondicionado</div>
     <div class="strip-item" role="listitem"><span aria-hidden="true">◈</span> Limpieza evaporadora con bactericida</div>
-    <div class="strip-item" role="listitem"><span aria-hidden="true">◈</span> Carga gas R32 y R410A</div>
+    <div class="strip-item" role="listitem"><span aria-hidden="true">◈</span> Carga gas R32, R410A y R22</div>
     <div class="strip-item" role="listitem"><span aria-hidden="true">◈</span> Caseros · Tres de Febrero · GBA oeste</div>
   </div>
 </div>
@@ -1321,28 +1212,34 @@
       <p class="service-num">01</p>
       <h3 class="service-name">Instalación de Split Nuevo</h3>
       <p class="service-desc">Instalación completa de equipos de aire acondicionado en Caseros y zona oeste. Tendido de cañerías de cobre con aislación, instalación de unidades interior y exterior, conexión eléctrica en tablero y puesta en marcha con verificación de presiones del circuito refrigerante.</p>
+      <p class="service-price"><strong>$250.000</strong>split de 3000 a 4500 frigorías · materiales y mano de obra incluidos</p>
     </article>
     <article class="service-card">
       <p class="service-num">02</p>
-      <h3 class="service-name">Mantenimiento Preventivo de Split</h3>
-      <p class="service-desc">Limpieza de filtros, revisión de conexiones eléctricas, control del circuito de refrigeración y verificación de temperaturas de trabajo. El mantenimiento que alarga la vida útil del equipo y evita la falla en pleno verano.</p>
+      <h3 class="service-name">Mantenimiento Preventivo y Revisión Técnica</h3>
+      <p class="service-desc">Revisión técnica del equipo con manómetros profesionales y tester: revisión de conexiones eléctricas, control del circuito de refrigeración y verificación de temperaturas de trabajo. El mantenimiento que alarga la vida útil del equipo y evita la falla en pleno verano.</p>
+      <p class="service-price"><strong>$30.000</strong>visita de revisión técnica del equipo</p>
     </article>
     <article class="service-card">
       <p class="service-num">03</p>
-      <h3 class="service-name">Limpieza Profunda de Evaporadora</h3>
-      <p class="service-desc">Descontaminación completa del intercambiador con productos bactericidas y fungicidas homologados. Eliminación de hongos, olores y biofilm acumulado. Cubrimos paredes, muebles y pisos antes de arrancar.</p>
+      <h3 class="service-name">Limpieza Profunda de Evaporadora y Condensadora</h3>
+      <p class="service-desc">Limpieza completa de la unidad interior (evaporadora) y de la unidad exterior (condensadora). En la evaporadora, descontaminación del intercambiador con productos bactericidas y fungicidas homologados: eliminación de hongos, olores y biofilm acumulado. Cubrimos paredes, muebles y pisos antes de arrancar.</p>
+      <p class="service-price"><strong>$120.000</strong>limpieza total de unidad interior y exterior</p>
     </article>
     <article class="service-card">
       <p class="service-num">04</p>
-      <h3 class="service-name">Carga de Gas R32 y R410A</h3>
+      <h3 class="service-name">Carga de Gas R32, R410A y R22</h3>
       <p class="service-desc">Diagnóstico con manómetros para determinar si hay pérdida activa o falta de carga. Si hay fuga, primero se detecta y repara con detector electrónico; recién después se carga el gas refrigerante.</p>
+      <p class="service-price"><strong>$100.000</strong>carga de gas</p>
     </article>
     <article class="service-card">
       <p class="service-num">05</p>
-      <h3 class="service-name">Diagnóstico y Reparación de Fallas</h3>
+      <h3 class="service-name">Reparación de Fallas</h3>
       <p class="service-desc">El equipo no arranca, enfría poco, muestra código de error, hace ruido o gotea. Diagnóstico con instrumental para llegar a la causa real: falla eléctrica, electrónica, mecánica o del circuito de refrigeración.</p>
+      <p class="service-price"><strong>Según la falla</strong>el precio depende de cada reparación</p>
     </article>
   </div>
+  <p class="services-note reveal">Valores de referencia — octubre 2026. Escribinos por WhatsApp para confirmar el presupuesto de tu equipo.</p>
 </section>
 
 <!-- ══════════════════════════════════════════
@@ -1554,7 +1451,17 @@
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
         <div class="faq-answer">
-          El costo varía según el tipo de gas (R32, R410A o R22), la cantidad necesaria y si hay una pérdida activa que reparar antes de cargar. Diagnosticamos primero con manómetros para darte un presupuesto preciso. Escribinos por WhatsApp para una consulta sin cargo.
+          El valor de referencia de la carga de gas refrigerante es de $100.000 (octubre 2026). Puede variar según el tipo de gas (R32, R410A o R22) y si hay una pérdida activa que reparar antes de cargar. Antes de cargar diagnosticamos la presión con manómetros; la revisión técnica con manómetros profesionales cuesta $30.000. Escribinos por WhatsApp para confirmar el presupuesto de tu equipo.
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+          ¿Cuánto cuesta instalar un aire acondicionado split en Caseros?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          La instalación de un split de 3000 a 4500 frigorías tiene un valor de referencia de $250.000 (octubre 2026), con materiales y mano de obra incluidos. La limpieza total de evaporadora y condensadora, unidad interior y exterior, cuesta $120.000. Escribinos por WhatsApp con el modelo del equipo y tu dirección para confirmar el presupuesto.
         </div>
       </div>
 
@@ -1628,7 +1535,7 @@
               <span itemprop="priceCurrency" content="ARS">$</span>
               <span itemprop="price" content="12500">12.500</span>
             </span>
-            <button class="btn-add-cart" onclick="addToCart('Capacitor Evertech 35 µF', 12500)" aria-label="Añadir Capacitor Evertech 35 µF al carrito">Añadir al carro</button>
+            <a class="btn-shop-consult" href="https://wa.me/541125426499?text=Hola%2C%20me%20interesa%20el%20producto%3A%20Capacitor%20Evertech%2035%20%C2%B5F" target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp: Capacitor Evertech 35 µF">Consultar por WhatsApp</a>
           </div>
         </div>
       </article>
@@ -1649,7 +1556,7 @@
               <span itemprop="priceCurrency" content="ARS">$</span>
               <span itemprop="price" content="34000">34.000</span>
             </span>
-            <button class="btn-add-cart" onclick="addToCart('Kit Diagnóstico HVAC + Capacitores', 34000)" aria-label="Añadir Kit Diagnóstico al carrito">Añadir al carro</button>
+            <a class="btn-shop-consult" href="https://wa.me/541125426499?text=Hola%2C%20me%20interesa%20el%20producto%3A%20Kit%20Diagn%C3%B3stico%20HVAC%20%2B%20Capacitores" target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp: Kit Diagnóstico HVAC + Capacitores">Consultar por WhatsApp</a>
           </div>
         </div>
       </article>
@@ -1663,7 +1570,7 @@
 <section class="cta-section" aria-labelledby="cta-title">
   <div class="cta-inner reveal">
     <h2 id="cta-title">¿Necesitás instalar un aire acondicionado nuevo o el equipo está fallando?</h2>
-    <p>Contanos qué modelo tenés, si es instalación nueva o un problema existente, y dónde estás. Te respondemos el mismo día con presupuesto sin cargo.</p>
+    <p>Contanos qué modelo tenés, si es instalación nueva o un problema existente, y dónde estás. Te respondemos el mismo día por WhatsApp con un precio de referencia.</p>
     <a href="https://wa.me/541125426499?text=Hola%2C%20me%20interesa%20una%20instalaci%C3%B3n%20o%20servicio%20t%C3%A9cnico%20para%20mi%20aire%20acondicionado%20split%20en%20Caseros"
        class="btn-cta-big"
        target="_blank"
@@ -1680,34 +1587,6 @@
      CALCULADORA
      ══════════════════════════════════════════ -->
 </main>
-
-<!-- ══════════════════════════════════════════
-     FLOATING CART
-     ══════════════════════════════════════════ -->
-<button id="cart-float-btn" onclick="toggleCart()" aria-label="Ver carrito de compras">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-  <div id="cart-count-badge" aria-label="Cantidad de productos en el carrito">0</div>
-</button>
-
-<div id="cart-sidebar" role="dialog" aria-modal="true" aria-label="Carrito de compras">
-  <div class="cart-header">
-    <h3>Tu Carrito</h3>
-    <button class="cart-close-btn" onclick="toggleCart()" aria-label="Cerrar carrito">×</button>
-  </div>
-  <div class="cart-items-list" id="cart-items-container">
-    <p style="color:var(--muted); font-size: 0.95rem; text-align: center; margin-top: 20px;">El carrito está vacío.</p>
-  </div>
-  <div class="cart-footer">
-    <div class="cart-total-row">
-      <span>Total:</span>
-      <div class="cart-total-price" id="cart-total-display">$ 0</div>
-    </div>
-    <button class="btn-submit-order" onclick="sendOrderWhatsApp()">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
-      Confirmar Pedido por WhatsApp
-    </button>
-  </div>
-</div>
 
 <!-- ══════════════════════════════════════════
      FOOTER — con datos estructurados en texto
@@ -1777,94 +1656,6 @@
       btn.setAttribute('aria-expanded', 'true');
     }
   }
-</script>
-
-<script>
-// ══════════════════════════════════════════
-//  LÓGICA DEL CARRITO DE COMPRAS
-// ══════════════════════════════════════════
-let cart = [];
-
-function toggleCart() {
-  const sidebar = document.getElementById('cart-sidebar');
-  sidebar.classList.toggle('open');
-}
-
-function addToCart(name, price) {
-  const existingProduct = cart.find(item => item.name === name);
-  if (existingProduct) {
-    existingProduct.quantity += 1;
-  } else {
-    cart.push({ name: name, price: price, quantity: 1 });
-  }
-  updateCartUI();
-  document.getElementById('cart-sidebar').classList.add('open');
-}
-
-function updateQuantity(name, delta) {
-  const product = cart.find(item => item.name === name);
-  if (product) {
-    product.quantity += delta;
-    if (product.quantity <= 0) {
-      cart = cart.filter(item => item.name !== name);
-    }
-  }
-  updateCartUI();
-}
-
-function updateCartUI() {
-  const container = document.getElementById('cart-items-container');
-  const badge = document.getElementById('cart-count-badge');
-  const totalDisplay = document.getElementById('cart-total-display');
-
-  let totalItems = 0;
-  let totalPrice = 0;
-
-  if (cart.length === 0) {
-    container.innerHTML = `<p style="color:var(--muted); font-size: 0.95rem; text-align: center; margin-top: 20px;">El carrito está vacío.</p>`;
-    badge.textContent = '0';
-    totalDisplay.textContent = '$ 0';
-    return;
-  }
-
-  container.innerHTML = cart.map(item => {
-    totalItems += item.quantity;
-    totalPrice += item.price * item.quantity;
-    return `
-      <div class="cart-item">
-        <div class="cart-item-details">
-          <div class="cart-item-title">${item.name}</div>
-          <div class="cart-item-price">$ ${(item.price * item.quantity).toLocaleString('es-AR')}</div>
-        </div>
-        <div class="cart-item-actions">
-          <button class="cart-qty-btn" onclick="updateQuantity('${item.name}', -1)" aria-label="Quitar uno de ${item.name}">-</button>
-          <span class="cart-qty-val" aria-label="Cantidad: ${item.quantity}">${item.quantity}</span>
-          <button class="cart-qty-btn" onclick="updateQuantity('${item.name}', 1)" aria-label="Agregar uno de ${item.name}">+</button>
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  badge.textContent = totalItems;
-  totalDisplay.textContent = '$ ' + totalPrice.toLocaleString('es-AR');
-}
-
-function sendOrderWhatsApp() {
-  if (cart.length === 0) return;
-
-  let text = "¡Hola García Climatización! Me interesa adquirir los siguientes repuestos:\n\n";
-  let total = 0;
-
-  cart.forEach(item => {
-    text += `• ${item.quantity}x ${item.name} — $ ${(item.price * item.quantity).toLocaleString('es-AR')}\n`;
-    total += item.price * item.quantity;
-  });
-
-  text += `\n*Total estimado: $ ${total.toLocaleString('es-AR')}*`;
-
-  const encodedText = encodeURIComponent(text);
-  window.open(`https://wa.me/541125426499?text=${encodedText}`, '_blank');
-}
 </script>
 </body>
 </html>
