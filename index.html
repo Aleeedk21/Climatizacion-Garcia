@@ -1162,13 +1162,44 @@
     footer { padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px)); }
   }
 
-  /* ── Calculadora de frigorías (enlace a la app) ── */
+  /* ── Calculadora de frigorías ── */
   .calc { padding: 96px 40px; border-top: 1px solid rgba(200,232,245,.07); position: relative; z-index: 1; }
   .calc-inner { max-width: 1000px; margin: 0 auto; }
-  .calc-extra { margin-top: 28px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 32px; align-items: start; }
+  .calc-form { display: flex; flex-direction: column; gap: 16px; }
+  .calc-field { display: flex; flex-direction: column; gap: 6px; }
+  .calc-field label { font-size: .9rem; color: var(--muted); }
+  .calc-field input[type=number] {
+    background: var(--dark); color: var(--white);
+    border: 1px solid rgba(200,232,245,.2); border-radius: 4px;
+    padding: 12px 14px; font: inherit; font-size: 1rem; width: 100%;
+  }
+  .calc-field input:focus-visible, .calc-btn:focus-visible, .calc-check input:focus-visible { outline: 2px solid var(--cold); outline-offset: 2px; }
+  .calc-check { display: flex; gap: 10px; align-items: flex-start; font-size: .95rem; color: var(--muted); cursor: pointer; }
+  .calc-check input { margin-top: 4px; accent-color: var(--cold); width: 18px; height: 18px; flex-shrink: 0; }
+  .calc-btn {
+    background: var(--blue); color: #fff; border: 0; border-radius: 4px; cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; letter-spacing: .06em;
+    padding: 14px 28px; align-self: flex-start; transition: background .2s;
+  }
+  .calc-btn:hover { background: #2569b0; }
+  .calc-error { color: #ffb4a8; font-size: .9rem; }
+  .calc-result { background: var(--dark); border-left: 3px solid var(--cold); border-radius: 4px; padding: 24px; min-height: 160px; }
+  .calc-empty { color: var(--muted); font-size: .95rem; }
+  .calc-big { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2.4rem; line-height: 1.1; }
+  .calc-big small { font-size: 1rem; font-weight: 600; color: var(--muted); }
+  .calc-line { margin-top: 10px; font-size: .95rem; color: var(--muted); }
+  .calc-line strong { color: var(--white); }
+  .calc-result .btn-primary { margin-top: 18px; font-size: 1rem; padding: 12px 22px; }
+  .calc-extra { margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(200,232,245,.1); display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
   .calc-extra img { flex-shrink: 0; border-radius: 14px; }
-  .calc-extra p { flex: 1 1 320px; font-size: 1.05rem; color: var(--muted); max-width: 60ch; }
-  @media (max-width: 768px) { .calc { padding: 56px 20px; } }
+  .calc-extra p { flex: 1 1 320px; font-size: .95rem; color: var(--muted); max-width: 60ch; }
+  .calc-note { margin-top: 24px; font-size: .85rem; color: var(--muted); max-width: 70ch; }
+  @media (max-width: 768px) {
+    .calc { padding: 56px 20px; }
+    .calc-grid { grid-template-columns: 1fr; }
+    .calc-btn { width: 100%; }
+  }
 </style>
 
 </head>
@@ -1665,11 +1696,38 @@
      ══════════════════════════════════════════ -->
 <section class="calc" id="calculadora" aria-labelledby="calc-title">
   <div class="calc-inner">
+    <p class="section-label">Calculadora de frigorías</p>
     <h2 class="section-title" id="calc-title">¿Qué potencia de aire acondicionado necesita tu ambiente?</h2>
+    <p class="section-body">Calculá una estimación en frigorías y BTU. Es gratis y no te pedimos ningún dato personal.</p>
+    <div class="calc-grid">
+      <div class="calc-form">
+        <div class="calc-field">
+          <label for="calc-m2">Superficie del ambiente (m²)</label>
+          <input id="calc-m2" type="number" inputmode="decimal" min="1" max="150" step="0.5" placeholder="Ej.: 20">
+        </div>
+        <div class="calc-field">
+          <label for="calc-alt">Altura del techo (m)</label>
+          <input id="calc-alt" type="number" inputmode="decimal" min="2" max="4" step="0.1" value="2.6">
+        </div>
+        <div class="calc-field">
+          <label for="calc-pers">Personas que usan el ambiente</label>
+          <input id="calc-pers" type="number" inputmode="numeric" min="1" max="10" step="1" value="2">
+        </div>
+        <label class="calc-check"><input id="calc-sol" type="checkbox"> Recibe sol directo por la tarde o tiene ventanales grandes</label>
+        <label class="calc-check"><input id="calc-techo" type="checkbox"> Es el último piso o el techo no está aislado</label>
+        <label class="calc-check"><input id="calc-calor" type="checkbox"> Hay cocina, computadoras u otros equipos que dan calor</label>
+        <button type="button" class="calc-btn" id="calc-go">Calcular</button>
+        <p class="calc-error" id="calc-error" role="alert" hidden></p>
+      </div>
+      <div class="calc-result" id="calc-result" aria-live="polite">
+        <p class="calc-empty">Completá los datos y pulsá Calcular para ver la estimación.</p>
+      </div>
+    </div>
+    <p class="calc-note">Es una estimación orientativa y no reemplaza una evaluación técnica en el lugar. Aislación, orientación, ventanas y equipos pueden cambiar la potencia necesaria.</p>
     <div class="calc-extra">
       <img src="img/techcalc-logo.svg" width="56" height="56" alt="Logo de TechCalc" loading="lazy" decoding="async">
-      <p>Probá la aplicación: calculá las frigorías y los BTU según la orientación, el techo y la zona climática, y estimá el consumo. Es gratis y sin registro.</p>
-      <a class="btn-secondary" href="https://techcalcpro.netlify.app/" target="_blank" rel="noopener" data-track="techcalc_click">Probar la aplicación</a>
+      <p>¿Querés más detalle? Probá la versión completa de la calculadora, con orientación de la ventana, zona climática y consumo estimado.</p>
+      <a class="btn-secondary" href="https://techcalcpro.netlify.app/" target="_blank" rel="noopener" data-track="techcalc_click">Probar la calculadora completa</a>
     </div>
   </div>
 </section>
@@ -1895,6 +1953,46 @@
     window.addEventListener('scroll', t, { passive: true }); t();
   })();
 
+  // ── Calculadora de frigorías (estimación orientativa) ──
+  (function () {
+    var go = document.getElementById('calc-go');
+    if (!go) return;
+    var SIZES = [2250, 3000, 4500, 6000, 9000];
+    var $ = function (id) { return document.getElementById(id); };
+    var err = $('calc-error'), out = $('calc-result');
+    function num(id) { return parseFloat(String($(id).value).replace(',', '.')); }
+    function fail(msg) { err.textContent = msg; err.hidden = false; }
+    go.addEventListener('click', function () {
+      err.hidden = true;
+      var m2 = num('calc-m2'), alt = num('calc-alt'), pers = num('calc-pers');
+      if (!isFinite(m2) || m2 < 1 || m2 > 150) return fail('Ingresá una superficie entre 1 y 150 m².');
+      if (!isFinite(alt) || alt < 2 || alt > 4) return fail('Ingresá una altura de techo entre 2 y 4 m.');
+      if (!isFinite(pers) || pers < 1 || pers > 10 || Math.floor(pers) !== pers) return fail('Ingresá entre 1 y 10 personas.');
+      var fg = m2 * 100 * (alt / 2.6);
+      if ($('calc-sol').checked) fg *= 1.2;
+      if ($('calc-techo').checked) fg *= 1.15;
+      fg += Math.max(0, pers - 2) * 100;
+      if ($('calc-calor').checked) fg += 200;
+      fg = Math.round(fg / 50) * 50;
+      var btu = Math.round(fg * 3.968 / 100) * 100;
+      var rec = null;
+      for (var i = 0; i < SIZES.length; i++) { if (SIZES[i] >= fg) { rec = SIZES[i]; break; } }
+      var html = '<p class="calc-big">' + fg.toLocaleString('es-AR') + ' <small>frigorías/h estimadas</small></p>' +
+                 '<p class="calc-line">Equivale a unos <strong>' + btu.toLocaleString('es-AR') + ' BTU/h</strong>.</p>';
+      var msg;
+      if (rec) {
+        html += '<p class="calc-line">Equipo split de referencia: <strong>' + rec.toLocaleString('es-AR') + ' frigorías</strong>.</p>';
+        if (rec > fg * 1.35) html += '<p class="calc-line">El tamaño comercial más cercano queda bastante por encima de lo estimado. Consultanos para elegir bien.</p>';
+        msg = 'Hola, calculé unas ' + fg + ' frigorías para un ambiente de ' + m2 + ' m² y quiero consultar por un equipo de ' + rec + ' frigorías.';
+      } else {
+        html += '<p class="calc-line">Supera lo habitual en un solo split. Puede requerir más de un equipo: consultanos.</p>';
+        msg = 'Hola, calculé unas ' + fg + ' frigorías para un ambiente de ' + m2 + ' m² y quiero consultar qué equipos necesito.';
+      }
+      html += '<a class="btn-primary" data-wa-location="calculadora" href="https://wa.me/541176267104?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>';
+      out.innerHTML = html;
+      if (typeof gtag === 'function') gtag('event', 'calculadora_frigorias');
+    });
+  })();
 </script>
 </body>
 </html>
