@@ -14,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- ══════════════════════════════════════════
-     FAVICON — ícono AG en la pestaña del navegador
+     FAVICON — ícono GA en la pestaña del navegador
      ══════════════════════════════════════════ -->
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -73,7 +73,7 @@
   "@type": "HVACBusiness",
   "@id": "https://garciaclimatizacion.com.ar/#business",
   "name": "García Climatización",
-  "description": "Servicio técnico de aire acondicionado en Caseros. Instalación, reparación y mantenimiento de equipos de aire acondicionado split, carga de gas refrigerante, limpieza profunda de evaporadoras con instrumental profesional. También instalación de tomacorrientes, luces y tableros eléctricos en domicilio.",
+  "description": "Servicio técnico de aire acondicionado en Caseros. Instalación, reparación y mantenimiento de equipos de aire acondicionado split, carga de gas refrigerante, limpieza profunda de evaporadoras con instrumental profesional.",
   "url": "https://garciaclimatizacion.com.ar/",
   "telephone": "+54-11-7626-7104",
   "currenciesAccepted": "ARS",
@@ -254,7 +254,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500&family=Outfit:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 
 
 <script>document.documentElement.classList.add('js');</script>
@@ -305,12 +305,9 @@
     font-weight: 800; font-size: 1.25rem; letter-spacing: .04em;
     color: var(--white);
   }
-  .logo { gap: 12px; }
-  .logo-mark { height: 44px; width: 44px; flex: none; display: block; }
-  .logo-text { display: flex; flex-direction: column; gap: 5px; line-height: 1; font-family: 'Outfit', 'Barlow Condensed', sans-serif; }
-  .logo .lt-1, .footer-logo .lt-1 { font-size: 1.35rem; font-weight: 600; letter-spacing: .06em; color: var(--white); }
-  .logo .lt-2, .footer-logo .lt-2 { font-size: .6rem; font-weight: 500; letter-spacing: .3em; color: #7CCBF5; }
-  .footer-logo .lt-3 { font-size: .52rem; font-weight: 500; letter-spacing: .3em; color: var(--white); }
+  .logo img { height: 46px; width: auto; display: block; }
+  @media (max-width: 768px) { .logo img { height: 38px; } }
+  .logo span { color: var(--cold); }
 
   .header-cta {
     display: flex; align-items: center; gap: 10px;
@@ -436,10 +433,8 @@
     display: flex; align-items: center; gap: 6px;
   }
   .trust-note::before {
-    content: ''; width: 14px; height: 14px; flex-shrink: 0;
-    background: var(--cold);
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7'/%3E%3C/svg%3E") center / contain no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    content: '✓';
+    color: var(--cold); font-weight: 700;
   }
 
   @media (max-width: 768px) {
@@ -535,17 +530,6 @@
     color: var(--cold);
     font-size: 1.3rem;
   }
-  .cred-svg { width: 24px; height: 24px; }
-  .cred-link {
-    display: inline-block; margin-top: 12px;
-    border: 1px solid rgba(79,195,232,.45); border-radius: 6px;
-    padding: 7px 14px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase;
-    color: var(--cold); text-decoration: none;
-    transition: background .2s, color .2s;
-  }
-  .cred-link:hover, .cred-link:focus-visible { background: var(--cold); color: var(--dark); }
 
   .cred-title {
     font-family: 'Barlow Condensed', sans-serif;
@@ -581,12 +565,9 @@
   .service-num {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: .75rem; font-weight: 700; letter-spacing: .14em;
-    color: var(--cold);
+    color: var(--cold); opacity: .6;
     margin-bottom: 16px;
-    display: flex; align-items: center; gap: 12px;
   }
-  .service-num span { opacity: .6; }
-  .service-ico { width: 34px; height: 34px; flex-shrink: 0; color: var(--cold); }
 
   .service-name {
     font-family: 'Barlow Condensed', sans-serif;
@@ -702,9 +683,9 @@
     color: var(--muted); line-height: 1.5;
     display: flex; align-items: center; gap: 8px;
   }
-  .comp-cell::before { content: ''; width: 14px; height: 14px; flex-shrink: 0; }
-  .comp-cell.bad::before { background: #e07070; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E") center / contain no-repeat; }
-  .comp-cell.good::before { background: #4fc3e8; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7'/%3E%3C/svg%3E") center / contain no-repeat; }
+  .comp-cell::before { font-size: .9rem; flex-shrink: 0; }
+  .comp-cell.bad::before { content: '✗'; color: #e07070; }
+  .comp-cell.good::before { content: '✓'; color: #4fc3e8; }
 
   /* ── FAQ SECTION ── */
   .faq-section {
@@ -991,8 +972,8 @@
     font-weight: 800; font-size: 1.1rem;
     color: var(--white);
   }
-  .footer-logo { gap: 12px; }
-  .footer-logo .logo-mark { height: 52px; width: 52px; }
+  .footer-logo img { height: 52px; width: auto; display: block; }
+  .footer-logo span { color: var(--cold); }
 
   .footer-info {
     font-size: .85rem; color: var(--muted);
@@ -1025,9 +1006,6 @@
     /* ── General ── */
     header { padding: 14px 16px; gap: 10px; }
     .logo  { font-size: 1rem; }
-    .logo-mark { height: 38px; width: 38px; }
-    .logo .lt-1 { font-size: 1.15rem; }
-    .logo .lt-2 { display: none; }
     .header-cta { font-size: .78rem; padding: 8px 12px; }
     .header-cta svg { width: 15px; height: 15px; }
 
@@ -1200,11 +1178,9 @@
 <!-- ══════════════════════════════════════════
      HEADER
      ══════════════════════════════════════════ -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="ag-mark" viewBox="0 0 120 120"><g fill="none" stroke-linecap="round" stroke-linejoin="round"><g stroke="#0B1A33" stroke-width="11"><path d="M60 14 V106 M20.2 83 L99.8 37 M20.2 37 L99.8 83"/><path d="M52.2 22.2 L60 30 L67.8 22.2 M52.2 97.8 L60 90 L67.8 97.8"/><path d="M88.8 34.4 L86 45 L96.6 47.9 M31.2 85.6 L34 75 L23.4 72.2"/><path d="M96.6 72.2 L86 75 L88.8 85.6 M23.4 47.9 L34 45 L31.2 34.4"/></g><g stroke="#6CC4F5" stroke-width="5"><path d="M60 14 V106 M20.2 83 L99.8 37 M20.2 37 L99.8 83"/><path d="M52.2 22.2 L60 30 L67.8 22.2 M52.2 97.8 L60 90 L67.8 97.8"/><path d="M88.8 34.4 L86 45 L96.6 47.9 M31.2 85.6 L34 75 L23.4 72.2"/><path d="M96.6 72.2 L86 75 L88.8 85.6 M23.4 47.9 L34 45 L31.2 34.4"/></g></g><polygon points="70,20 44,64 58,64 50,100 78,52 63,52" fill="#F59B23" stroke="#0B1A33" stroke-width="6" stroke-linejoin="round" style="paint-order: stroke"/></symbol></defs></svg>
 <header role="banner">
   <a href="/" class="logo" aria-label="García Climatización — inicio">
-    <svg class="logo-mark" viewBox="0 0 120 120" aria-hidden="true"><use href="#ag-mark"/></svg>
-    <span class="logo-text"><span class="lt-1">GARCÍA</span><span class="lt-2">CLIMATIZACIÓN</span></span>
+    <picture><source media="(min-width: 769px)" srcset="img/logo-horizontal.webp"><img src="img/logo-mark.webp" width="240" height="151" alt="García Climatización — logo"></picture>
   </a>
   <nav class="main-nav" aria-label="Principal">
     <a href="#servicios">Servicios</a>
@@ -1279,46 +1255,37 @@
 </div>
 
 <!-- ══════════════════════════════════════════
-     ABOUT — Quiénes somos
+     ABOUT — Quién soy
      ══════════════════════════════════════════ -->
 <section class="about" aria-labelledby="about-title">
   <div class="about-grid reveal">
     <div class="about-left">
-      <p class="section-label">Quiénes somos</p>
-      <h2 class="section-title" id="about-title">Técnicos en electrónica y refrigeración — equipados para diagnosticar, no para adivinar</h2>
+      <p class="section-label">Quién soy</p>
+      <h2 class="section-title" id="about-title">Técnico en electrónica y refrigeración — equipado para diagnosticar, no para adivinar</h2>
       <p class="section-body">
-        Trabajamos con <strong>formación técnica en electrónica y refrigeración</strong>, usando instrumental profesional para encontrar la falla real del equipo.<br><br>
-        Cada visita tiene un objetivo claro: diagnóstico preciso, trabajo prolijo y el aire acondicionado funcionando como corresponde. Atendemos en <strong>Caseros, Ciudadela, Tres de Febrero y zona oeste del GBA</strong>.<br><br>
-        Además del aire acondicionado, <strong>hacemos trabajos de electricidad</strong>: instalación de tomacorrientes, luces y tableros eléctricos en domicilio.<br><br>
-        Usamos <strong>manifold de manómetros, detector de fugas electrónico y bomba de vacío</strong> en cada intervención que lo requiere. Una reparación bien hecha depende de un buen diagnóstico, no de suerte.<br><br>
-        Cuidamos cada detalle: protección del ambiente del cliente, contención del agua en limpieza de evaporadoras y explicación clara de lo que necesita el equipo.
+        Trabajo con <strong>formación técnica en electrónica y refrigeración</strong>, usando instrumental profesional para encontrar la falla real del equipo.<br><br>
+        Cada visita tiene un objetivo claro: diagnóstico preciso, trabajo prolijo y el aire acondicionado funcionando como corresponde. Atiendo en <strong>Caseros, Ciudadela, Tres de Febrero y zona oeste del GBA</strong>.<br><br>
+        Uso <strong>manifold de manómetros, detector de fugas electrónico y bomba de vacío</strong> en cada intervención que lo requiere. Una reparación bien hecha depende de un buen diagnóstico, no de suerte.<br><br>
+        Cuido cada detalle: protección del ambiente del cliente, contención del agua en limpieza de evaporadoras y explicación clara de lo que necesita el equipo.
       </p>
     </div>
     <div class="about-right">
       <div class="credential-card reveal">
-        <div class="cred-icon" aria-hidden="true"><svg class="cred-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 3v3M14 3v3M10 18v3M14 18v3M3 10h3M3 14h3M18 10h3M18 14h3"/></svg></div>
+        <div class="cred-icon" aria-hidden="true">⚙</div>
         <div>
           <h3 class="cred-title">Formación técnica en electrónica</h3>
           <p class="cred-text">Base sólida para entender el equipo completo: no solo el ciclo de refrigeración, sino la parte eléctrica y electrónica que la mayoría de los técnicos improvisa.</p>
         </div>
       </div>
       <div class="credential-card reveal">
-        <div class="cred-icon" aria-hidden="true"><svg class="cred-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M9.5 8.5v3M14.5 8.5v3M9.5 15.5h5"/></svg></div>
-        <div>
-          <h3 class="cred-title">Trabajos de electricidad en domicilio</h3>
-          <p class="cred-text">No solo aire acondicionado: también instalamos tomacorrientes, luces y tableros eléctricos en domicilio.</p>
-        </div>
-      </div>
-      <div class="credential-card reveal">
-        <div class="cred-icon" aria-hidden="true"><svg class="cred-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l3.8-3.8M12 5.5v1.3M5.5 12h1.3M18.5 12h-1.3"/></svg></div>
+        <div class="cred-icon" aria-hidden="true">🔧</div>
         <div>
           <h3 class="cred-title">Instrumental profesional de refrigeración</h3>
           <p class="cred-text">Manifold de manómetros, vacuómetro digital, detector de fugas electrónico para R32 y R410A. Diagnóstico con datos reales, no a ojo.</p>
-          <a class="cred-link" href="#trabajos">Ver herramientas</a>
         </div>
       </div>
       <div class="credential-card reveal">
-        <div class="cred-icon" aria-hidden="true"><svg class="cred-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3l-5.5 8.5"/><path d="M6.5 11.5h9l1.5 8.5H5z"/><path d="M9.5 14.5v4M12.5 14.5v4"/></svg></div>
+        <div class="cred-icon" aria-hidden="true">✦</div>
         <div>
           <h3 class="cred-title">Prolijidad como parte del servicio</h3>
           <p class="cred-text">La limpieza de evaporadoras genera agua y suciedad. Cubrimos paredes y pisos antes de trabajar y nos retiramos sin dejar rastros en tu domicilio.</p>
@@ -1336,31 +1303,31 @@
   <h2 class="section-title reveal" id="services-title">Instalación y servicio técnico de aire acondicionado en Caseros — lo que hacemos y cómo lo hacemos</h2>
   <div class="services-grid reveal">
     <article class="service-card">
-      <p class="service-num"><span>01</span><svg class="service-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><path d="M6 9h12"/><path d="M7 14v3a2 2 0 0 0 2 2h8"/><path d="M11 14v1.5"/></svg></p>
+      <p class="service-num">01</p>
       <h3 class="service-name">Instalación de Split Nuevo</h3>
       <p class="service-desc">Instalación completa de equipos de aire acondicionado en Caseros y zona oeste. Tendido de cañerías de cobre con aislación, instalación de unidades interior y exterior, conexión eléctrica en tablero y puesta en marcha con verificación de presiones del circuito refrigerante.</p>
       <p class="service-price"><strong>$250.000</strong>split de 3000 a 4500 frigorías · materiales y mano de obra incluidos</p>
     </article>
     <article class="service-card">
-      <p class="service-num"><span>02</span><svg class="service-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M8.5 12.5l2 2 4-4.5M8.5 18h7"/></svg></p>
+      <p class="service-num">02</p>
       <h3 class="service-name">Mantenimiento Preventivo y Revisión Técnica</h3>
       <p class="service-desc">Revisión técnica del equipo con manómetros profesionales y tester: revisión de conexiones eléctricas, control del circuito de refrigeración y verificación de temperaturas de trabajo. El mantenimiento que alarga la vida útil del equipo y evita la falla en pleno verano.</p>
       <p class="service-price"><strong>$50.000</strong>visita de revisión técnica del equipo</p>
     </article>
     <article class="service-card">
-      <p class="service-num"><span>03</span><svg class="service-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5s5 5.2 5 9a5 5 0 0 1-10 0c0-3.8 5-9 5-9z"/><path d="M9.8 13.5a2.3 2.3 0 0 0 2 2.2"/><circle cx="19" cy="6" r="1.2"/><circle cx="5" cy="5.5" r="1"/></svg></p>
+      <p class="service-num">03</p>
       <h3 class="service-name">Limpieza Profunda de Evaporadora y Condensadora</h3>
       <p class="service-desc">Limpieza completa de la unidad interior (evaporadora) y de la unidad exterior (condensadora). En la evaporadora, descontaminación del intercambiador con productos bactericidas y fungicidas homologados: eliminación de hongos, olores y biofilm acumulado. Cubrimos paredes, muebles y pisos antes de arrancar.</p>
       <p class="service-price"><strong>$120.000</strong>limpieza total de unidad interior y exterior</p>
     </article>
     <article class="service-card">
-      <p class="service-num"><span>04</span><svg class="service-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7.5" y="9" width="9" height="12" rx="3"/><path d="M10 9V6h4v3M9 6h6M12 6V3.5h3"/><path d="M7.5 14h9"/></svg></p>
+      <p class="service-num">04</p>
       <h3 class="service-name">Carga de Gas R32, R410A y R22</h3>
       <p class="service-desc">Diagnóstico con manómetros para determinar si hay pérdida activa o falta de carga. Si hay fuga, primero se detecta y repara con detector electrónico; recién después se carga el gas refrigerante.</p>
       <p class="service-price"><strong>$100.000</strong>carga de gas</p>
     </article>
     <article class="service-card">
-      <p class="service-num"><span>05</span><svg class="service-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9l-3.8 3.8z"/></svg></p>
+      <p class="service-num">05</p>
       <h3 class="service-name">Reparación de Fallas</h3>
       <p class="service-desc">El equipo no arranca, enfría poco, muestra código de error, hace ruido o gotea. Diagnóstico con instrumental para llegar a la causa real: falla eléctrica, electrónica, mecánica o del circuito de refrigeración.</p>
       <p class="service-price"><strong>Según la falla</strong>el precio depende de cada reparación</p>
@@ -1380,20 +1347,6 @@
     <button class="gallery-arrow gallery-arrow-next" aria-label="Ver fotos siguientes" onclick="scrollGallery(1)">›</button>
     <div class="gallery-grid" id="gallery-carousel">
 
-    <div class="gallery-item">
-      <img src="img/manifold-digital-maletin.webp" width="1100" height="619" decoding="async"
-           alt="Manifold digital Elitech MS-4000 dentro de su maletín con mangueras de carga azul, roja y amarilla — García Climatización Caseros"
-           loading="lazy"
-           onerror="this.closest('.gallery-item').style.background='#1e2d40'">
-      <p class="gallery-caption">Manifold digital con mangueras de carga: lectura de presión sin adivinar</p>
-    </div>
-    <div class="gallery-item">
-      <img src="img/manifold-digital-pantalla.webp" width="619" height="1100" decoding="async"
-           alt="Pantalla del manifold digital Elitech MS-4000 mostrando la presión del circuito en psi — García Climatización Caseros"
-           loading="lazy"
-           onerror="this.closest('.gallery-item').style.background='#1e2d40'">
-      <p class="gallery-caption">Manifold digital midiendo la presión del circuito en pantalla</p>
-    </div>
     <div class="gallery-item">
       <img src="img/IMG-20260829-WA0057.webp" width="825" height="1100" decoding="async"
            alt="Técnico realizando la conexión eléctrica de una evaporadora de aire acondicionado recién instalada — García Climatización Caseros"
@@ -1762,8 +1715,7 @@
      ══════════════════════════════════════════ -->
 <footer role="contentinfo">
   <div class="footer-logo" itemscope itemtype="https://schema.org/HVACBusiness">
-    <svg class="logo-mark" viewBox="0 0 120 120" role="img" aria-label="García Climatización — logo"><use href="#ag-mark"/></svg>
-    <span class="logo-text" aria-hidden="true"><span class="lt-1">GARCÍA</span><span class="lt-2">CLIMATIZACIÓN</span><span class="lt-3">&amp; ELECTRICIDAD</span></span>
+    <img src="img/logo-horizontal.webp" width="640" height="136" alt="García Climatización — logo" loading="lazy" decoding="async">
     <span itemprop="name" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">García Climatización</span>
   </div>
   <address class="footer-info" style="font-style: normal;">
@@ -1771,7 +1723,7 @@
       <span itemprop="addressLocality">Caseros</span>,
       <span itemprop="addressRegion">Buenos Aires</span>
     </span><br>
-    Técnico en aire acondicionado y electricidad · GBA zona oeste<br>
+    Técnico aire acondicionado · GBA zona oeste<br>
     Atención al cliente: lunes a sábado de 8 a 18 h<br>
     Trabajos con cita previa<br>
     <a data-wa-location="footer" href="https://wa.me/541176267104" target="_blank" rel="noopener noreferrer"
@@ -1895,7 +1847,7 @@
         if (item) { if (item.qty < 20) item.qty++; } else cart.push({ id: id, qty: 1 });
         save(); render();
         if (typeof gtag === 'function') gtag('event', 'add_to_cart', { currency: 'ARS', value: p.price, items: [{ item_id: p.id, item_name: p.name, price: p.price, quantity: 1 }] });
-        var old = b.textContent; b.textContent = 'Agregado';
+        var old = b.textContent; b.textContent = 'Agregado ✓';
         setTimeout(function () { b.textContent = old; }, 1500);
       });
     });
