@@ -1,0 +1,11 @@
+Logo nuevo — qué subir a GitHub (Climatizacion-Garcia)
+
+Subí todo esto respetando las carpetas. Los archivos con el mismo nombre se reemplazan:
+- index.html
+- og-image.jpg                 (imagen al compartir el link)
+- logo-ag-garcia.png           (logo para Google)
+- favicon.ico, favicon-16x16.png, favicon-32x32.png, apple-touch-icon.png   (ícono de la pestaña)
+- android-chrome-192x192.png, android-chrome-512x512.png                    (archivos nuevos)
+- img/logo-horizontal.webp, img/logo-mark.webp                              (encabezado y pie)
+
+Después recargá con Ctrl+F5. El ícono de la pestaña puede tardar en actualizarse (limpiá caché si sigue el viejo).
